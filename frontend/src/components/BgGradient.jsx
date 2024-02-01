@@ -1,8 +1,10 @@
 import "./BgGradient.css";
 
 
-export default function BgGradient(){
+export default function BgGradient() {
     return (
-        <div className="bg_Gradient"/>
+        <>
+            <div className="bg_Gradient" />
+        </>
     );
 }
