@@ -1,0 +1,33 @@
+/* Button.css  */
+
+.navButton{
+    background-color: #2E2CB2;
+    height: 65%;
+    padding: 10px 20px;
+    color:aliceblue;
+    /* margin-left:10px; */
+    /* margin-right: auto; */
+    border-radius: 18px;
+    transition: 0.2s;
+}
+
+.navButton:hover{
+    box-shadow: 0 0 10px 5px rgba(138, 43, 226, 0.7); 
+    border-color: rgb(252, 243, 169);
+    color: rgb(252, 243, 169);
+}
+
+.navButton.left{
+    margin-left: 10px;
+    width: 160px;
+    margin-right:auto
+}
+
+.navButton.right{
+    width: 140px;
+    margin-right: 10px;
+    margin-left:auto;
+
+
+}
+

@@ -1,0 +1,11 @@
+/* NavBar.css */
+.navbar{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+    height: 5em;
+    /* background-color: linear-gradient(#0d0049, #7c2fcd); **wont work**  */
+    background-color: rgb(17, 11, 42);
+}
+
