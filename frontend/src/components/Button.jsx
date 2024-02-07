@@ -2,14 +2,15 @@
 import "./Button.css";
 import PropTypes from "prop-types";
 
-function Button({ name, title, onClick }) {
-    return <button onClick={onClick} type="button" className={name}> { title }</button>;
+function Button({ name, title, onClick, status }) {
+    return <button onClick={onClick} type="button" id={status} className={name}> { title }</button>;
 }
 
 Button.propTypes = {
     name: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    status: PropTypes.string
 };
 
 export default Button;

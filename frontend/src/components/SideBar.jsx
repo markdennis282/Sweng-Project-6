@@ -17,6 +17,7 @@ function SideBar() {
         formData.forEach((value, key) => {
             formDataObject[key] = value;
         });
+        // console.log(formDataObject);
 
         try {
             await axios.post("http://localhost:8000/source", formDataObject);
@@ -34,7 +35,7 @@ function SideBar() {
                     <Button name="x" title="X" onClick={handleClick} />
                     <form onSubmit={handleSubmit}>
                         <label>Source URL</label> <br />
-                        <input type="text" name="url" /> <br />
+                        <input type="text" name="url" required /> <br />
                         <label>Access Control</label> <br />
                         <select name="source_section">
                             <option>Select</option>
