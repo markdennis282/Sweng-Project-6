@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 class Input_Chat(BaseModel):
     #body of text
@@ -17,12 +18,32 @@ class Input_Source(BaseModel):
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:5173"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
+
 @app.post("/chat/")
 async def chat(input_chat : Input_Chat):
     return {"chat" : "function"}
 
 @app.post("/source/")
 async def source(input_source : Input_Source):
+    # print(input_source.dict())
+    source_dict = input_source.dict()
+    url = source_dict["url"]
+    source_section = source_dict["source_section"]
+    refresh_interval = source_dict["refresh_interval"]
+    print("URL:", url)
+    print("Source Section:", source_section)
+    print("Refresh Interval:", refresh_interval)
     return {"source" : "function"}
 
 

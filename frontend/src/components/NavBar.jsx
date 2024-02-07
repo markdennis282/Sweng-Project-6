@@ -1,16 +1,30 @@
 // NavBar.jsx
 import "./NavBar.css";
 import Button from "./Button.jsx";
+import { useState } from "react";
 
 function NavBar() {
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+
+    const buttons = ["ALL", "COMPLIANCE", "HR", "TECH"];
+
     return (
         <>
             <div className="navbar">
-                <Button name="navButton left" title="ADD A SOURCE" />
-                <Button name="navButton right" title="ALL" />
-                <Button name="navButton right" title="COMPLIANCE" />
-                <Button name="navButton right" title="HR" />
-                <Button name="navButton right" title="TECH" />
+                {
+                    buttons.map((title, index) =>
+                        <Button
+                            key={index}
+                            status={index === selectedIndex ? "selected" : ""}
+                            name="navButton right"
+                            title={title}
+                            onClick={() => {
+                                setSelectedIndex(index);
+                            }}
+                        />
+                    )
+                }
             </div>
         </>
     );

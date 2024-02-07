@@ -27,7 +27,8 @@
     width: 140px;
     margin-right: 10px;
     margin-left:auto;
-
-
 }
 
+.navButton#selected{
+    outline: 4px auto -webkit-focus-ring-color;
+}
