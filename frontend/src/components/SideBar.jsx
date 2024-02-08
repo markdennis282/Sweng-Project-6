@@ -1,6 +1,8 @@
 // SideBar.jsx
 import Button from "./Button";
 import "./Button.css";
+import "./SideBar.css";
+
 import { useState } from "react";
 import axios from "axios";
 
