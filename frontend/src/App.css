@@ -1,8 +1,17 @@
 #root {
   max-width: 1280px;
+}
+*{
+  overscroll-behavior: none;
+  scroll-behavior: smooth;
+  text-align: center; 
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+}
+
+body {
+
+  background: linear-gradient(105deg, #0d0049, #7c2fcd);
 }
 
 .logo {

@@ -1,0 +1,75 @@
+/* ChatBox.css */
+.chat_box{
+    display: flex;
+    height: 60vh;
+    width: 80vw;
+    background-color: rgb(17, 11, 42);
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 3em;
+    align-items:flex-end;
+    flex-direction:column-reverse;
+
+}
+
+
+.chat_input_field{
+    width: inherit;
+    border-radius: 20px;
+    background-color: darkslateblue;
+    font-size: 18px;
+    padding: 1em;
+    color: white; /*not working?*/
+    align-self: center;
+
+}
+
+.message_box{
+    display: flex;
+    align-items: normal;
+    flex-direction: column;
+    width: inherit;
+    overflow:scroll;
+    margin-bottom: 20px;
+
+}
+
+.message{
+    text-align: left;
+    margin: 2em;
+    
+}
+.message p{
+    font-size: 16px;
+    text-align: justify;
+
+
+}
+.message #user{
+    margin-left: 20%;
+    direction: rtl;
+    text-align: justify;
+}
+.message #ai{
+    margin-right: 20%;
+}
+
+.sender_icon{
+    width: 3em;
+    height: 3em;
+    border-radius: 100px;
+    background-color: white;
+    margin-bottom: 1rem;
+
+}
+
+.sender_icon#user{
+    margin-left:96%;  /*random number aligning right icon: standing in for actual math*/
+    background-color: grey;
+}
+.sender_icon#ai{
+    margin-left:0%;  /*random number aligning right icon: standing in for actual math*/
+    background-color: blue;
+
+}
+
