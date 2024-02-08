@@ -10,7 +10,7 @@ function App() {
             <div className="bg_gradient">
                 <NavBar />
                 <Sidebar />
-                <ChatBox/>
+                <ChatBox />
             </div>
         </>
     );
