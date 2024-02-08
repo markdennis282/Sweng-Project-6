@@ -12,7 +12,7 @@
 }
 
 .navButton:hover{
-    box-shadow: 0 0 10px 5px rgba(138, 43, 226, 0.7); 
+    box-shadow: 0 0 4px 4px rgba(138, 43, 226, 0.7); 
     border-color: rgb(252, 243, 169);
     color: rgb(252, 243, 169);
 }
