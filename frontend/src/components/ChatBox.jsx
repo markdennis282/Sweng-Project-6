@@ -38,7 +38,7 @@ function ChatBox() {
     return (
         <>
             <div className="chat_box">
-                <input type="text" placeholder="Type Your Message Here And Hit Enter..." className="chat_input_field" value={inputValue} onChange={handleInputChange} onKeyPress={handleInputSubmission}></input>
+                <textarea rows="6" placeholder="Type Your Message Here And Hit Enter..." className="chat_input_field" value={inputValue} onChange={handleInputChange} onKeyPress={handleInputSubmission}></textarea>
                 <div className="message_box">
                 {messages.map((msg, index) => (
                     <div className="message">

@@ -17,11 +17,15 @@
     width: inherit;
     border-radius: 20px;
     background-color: darkslateblue;
-    font-size: 18px;
+    font-size: 16px;
+    text-decoration: none;
     padding: 1em;
     color: white; /*not working?*/
     align-self: center;
-
+    resize: none;
+    height: 4em;
+    min-height: 4em;
+    /* overflow: auto; */
 }
 
 .message_box{
