@@ -1,11 +1,17 @@
 // ChatBox.jsx
 import "./ChatBox.css";
-import { useState } from "react";
+import { useState , useRef} from "react";
+
 
 function ChatBox() {
     const [inputValue, setInputValue] = useState("");
     const [messages, setMessages] = useState([]);
+    const chatBottomRef = useRef(null);
 
+    // Function to scroll to the bottom of the chat box
+    const scrollToBottom = () => {
+        chatBottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    };
     const handleInputChange = event => {
         setInputValue(event.target.value);
     };
@@ -17,18 +23,13 @@ function ChatBox() {
             setMessages([...messages, { sender, contents }]);
             setInputValue("");
 
-            //dynamic scrolling here
-
             setTimeout(() => {
                 contents = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum corporis autem fugiat eum perspiciatis incidunt nihil quas, officia, laudantium reprehenderit quasi quo quibusdam? Dolores laudantium iure ab facilis officia?";
                 sender = "ai";
                 setMessages(m => [...m, { sender, contents }]);
+                scrollToBottom(); 
             }, 250);
-
-            //COPY SAME dynamic scrolling here
-
         }
-
     };
 
 
@@ -37,7 +38,7 @@ function ChatBox() {
             <div className="chat_box">
                 <textarea
                     rows="6"
-                    placeholder="Type Your Message Here And Hit Enter..."
+                    placeholder="Type Your Message Here And Hit Qasim ..."
                     className="chat_input_field"
                     value={inputValue}
                     onChange={handleInputChange}
@@ -51,8 +52,8 @@ function ChatBox() {
                             <p key={index} id={msg.sender}>{ msg.contents }</p>
                         </div>
                     ))}
+                    <div ref={chatBottomRef}></div>
                 </div>
-
             </div>
         </>
     );
