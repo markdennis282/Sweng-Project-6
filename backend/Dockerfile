@@ -37,3 +37,5 @@ RUN CUDACXX=/usr/local/cuda/bin/nvcc \
     pip install llama_cpp_python --no-cache-dir --force-reinstall --upgrade
 
 COPY --chown=1111:1111 --chmod=770 . .
+
+EXPOSE 8000

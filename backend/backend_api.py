@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
+from services.llm import query_rag
+
 class Input_Chat(BaseModel):
     #body of text
     prompt: str
@@ -32,7 +34,8 @@ app.add_middleware(
 
 @app.post("/chat/")
 async def chat(input_chat : Input_Chat):
-    return {"chat" : "function"}
+    response = await query_rag(input_chat.prompt, [])
+    return {"response" : response }
 
 @app.post("/source/")
 async def source(input_source : Input_Source):
