@@ -14,3 +14,11 @@ def get_env_as_nonnegint(env_variable_name: str) -> int | None:
     if value < 0:
         raise ValueError('Value should be a non-negative integer')
     return value
+
+def is_production_mode() -> bool:
+    """
+    Checks if the app is running in production mode.
+    """
+    
+    environment = os.environ.get('APP_ENVIRONMENT')
+    return environment == 'production'
