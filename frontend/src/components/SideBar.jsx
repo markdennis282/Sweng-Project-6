@@ -37,9 +37,9 @@ function SideBar() {
                     <Button name="x" title="X" onClick={handleClick} />
                     <form onSubmit={handleSubmit}>
                         <label>Source URL</label> <br />
-                        <input type="text" name="url" required /> <br />
+                        <input className="button url" type="text" name="url" required /> <br />
                         <label>Access Control</label> <br />
-                        <select name="source_section">
+                        <select className="button accessCtrl" name="source_section">
                             <option>Select</option>
                             <option value="all">All</option>
                             <option value="compliance">Compliance</option>
@@ -47,13 +47,13 @@ function SideBar() {
                             <option value="tech">TECH</option>
                         </select> <br />
                         <label>Refresh Interval</label> <br />
-                        <select name="refresh_interval">
+                        <select className="button refreshInt" name="refresh_interval">
                             <option>Select</option>
                             <option value="5">5min</option>
                             <option value="30">30min</option>
                             <option value="60">1hr</option>
                         </select> <br />
-                        <input type="submit" />
+                        <input className="button submit" type="submit" />
                     </form>
                 </>
             }

@@ -32,14 +32,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+#functions from other backend groups
+async def add_source(url: str, tags: list[str], refresh_interval: int) -> None:
+    print(url)
+    pass
+async def refresh_all_sources() -> None:
+    print("refreshed")
+    pass
+async def query_rag(query: str, source_tags: list[str]) -> str:
+    return "Example response from the LLM."
+
+
 @app.post("/chat/")
 async def chat(input_chat : Input_Chat):
-    response = await query_rag(input_chat.prompt, [])
-    return {"response" : response }
+    query_rag(input_chat.prompt, input_chat.section)
+    return {"chat" : "function"}
 
 @app.post("/source/")
 async def source(input_source : Input_Source):
     # print(input_source.dict())
+    # Is there a reason why we have a source_dict variable instead of doing input_source.url?  ~Nancy
     source_dict = input_source.dict()
     url = source_dict["url"]
     source_section = source_dict["source_section"]
@@ -47,10 +59,15 @@ async def source(input_source : Input_Source):
     print("URL:", url)
     print("Source Section:", source_section)
     print("Refresh Interval:", refresh_interval)
+    # a bit unsure about source_section and whether or not it should be declared as a list in the class or if it's ok as is
+    # function call to add a source to the database
+    add_source(url, [source_section], refresh_interval)
     return {"source" : "function"}
 
 
 @app.post("/refresh/")
 async def refresh():
+    # function call to refresh all sources.
+    refresh_all_sources()
     return {"refresh" : "function"}
 

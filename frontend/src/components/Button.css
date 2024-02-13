@@ -1,7 +1,7 @@
 /* Button.css  */
 
 .navButton{
-    background-color: #2E2CB2;
+    background-color: #065FA8;
     height: 65%;
     padding: 10px 20px;
     color:aliceblue;
@@ -12,7 +12,7 @@
 }
 
 .navButton:hover{
-    box-shadow: 0 0 4px 4px rgba(138, 43, 226, 0.7); 
+    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
     border-color: rgb(252, 243, 169);
     color: rgb(252, 243, 169);
 }
