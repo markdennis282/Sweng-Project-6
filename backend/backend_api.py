@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 from services.llm import query_rag
+from services.source_management import add_source, refresh_all_sources
 
 class Input_Chat(BaseModel):
     #body of text
@@ -32,21 +33,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-#functions from other backend groups
-async def add_source(url: str, tags: list[str], refresh_interval: int) -> None:
-    print(url)
-    pass
-async def refresh_all_sources() -> None:
-    print("refreshed")
-    pass
-async def query_rag(query: str, source_tags: list[str]) -> str:
-    return "Example response from the LLM."
-
-
 @app.post("/chat/")
 async def chat(input_chat : Input_Chat):
-    query_rag(input_chat.prompt, input_chat.section)
-    return {"chat" : "function"}
+    response = await query_rag(input_chat.prompt, [input_chat.section])
+    return {"response" : response}
 
 @app.post("/source/")
 async def source(input_source : Input_Source):
