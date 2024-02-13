@@ -1,4 +1,6 @@
-async def query_rag(query: str, source_tags: list[str]) -> str:
+from llm.query import query
+
+async def query_rag(query_string: str, source_tags: list[str]) -> str:
     """
     Generates a response to a query using Retrieval-Augmented Generation based on documents with a given source tag.
 
@@ -6,4 +8,7 @@ async def query_rag(query: str, source_tags: list[str]) -> str:
 
     Throws if an error occurs while generating the response.
     """
-    return "Example response from the LLM."
+    
+    # TODO finish the implementation
+    response = query(query_string)
+    return response

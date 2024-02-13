@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    stdin_open: true
+    tty: true
+    environment:
+      - APP_ENVIRONMENT=production
+      - LLM_GPU_LAYERS=1
+    ports:
+      - 8000:8000
+    volumes:
+      - chroma_db:/app/chroma_db
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
+volumes:
+  chroma_db:

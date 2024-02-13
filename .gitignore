@@ -1,13 +1,1 @@
-# Python Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Python Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
+.DS_Store
