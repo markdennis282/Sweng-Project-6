@@ -4,6 +4,7 @@ services:
     stdin_open: true
     tty: true
     environment:
+      - APP_ENVIRONMENT=production
       - LLM_GPU_LAYERS=1
     ports:
       - 8000:8000
