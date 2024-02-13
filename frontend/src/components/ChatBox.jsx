@@ -1,6 +1,7 @@
 // ChatBox.jsx
 import "./ChatBox.css";
-import { useState , useRef} from "react";
+import { useState, useRef } from "react";
+import BgImg from "../assets/millennium_bg.png";
 
 
 function ChatBox() {
@@ -10,7 +11,7 @@ function ChatBox() {
 
     // Function to scroll to the bottom of the chat box
     const scrollToBottom = () => {
-        chatBottomRef.current.scrollIntoView({ behavior: 'smooth' });
+        chatBottomRef.current.scrollIntoView({ behavior: "smooth" });
     };
     const handleInputChange = event => {
         setInputValue(event.target.value);
@@ -24,10 +25,11 @@ function ChatBox() {
             setInputValue("");
 
             setTimeout(() => {
+                // eslint-disable-next-line @stylistic/max-len
                 contents = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum corporis autem fugiat eum perspiciatis incidunt nihil quas, officia, laudantium reprehenderit quasi quo quibusdam? Dolores laudantium iure ab facilis officia?";
                 sender = "ai";
                 setMessages(m => [...m, { sender, contents }]);
-                scrollToBottom(); 
+                scrollToBottom();
             }, 250);
         }
     };
@@ -35,10 +37,10 @@ function ChatBox() {
 
     return (
         <>
-            <div className="chat_box">
+            <div className="chat_box" style={{ backgroundImage: `url(${BgImg})` }} >
                 <textarea
                     rows="6"
-                    placeholder="Type Your Message Here And Hit Qasim ..."
+                    placeholder="Type your message and hit enter ..."
                     className="chat_input_field"
                     value={inputValue}
                     onChange={handleInputChange}
@@ -52,7 +54,7 @@ function ChatBox() {
                             <p key={index} id={msg.sender}>{ msg.contents }</p>
                         </div>
                     ))}
-                    <div ref={chatBottomRef}></div>
+                    <div ref={chatBottomRef} />
                 </div>
             </div>
         </>

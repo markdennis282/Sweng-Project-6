@@ -3,12 +3,15 @@
     display: flex;
     height: 60vh;
     width: 80vw;
-    background-color: rgb(17, 11, 42);
+    background-color: rgb(20, 31, 62);
+    border: solid white; 
     margin-top: 20px;
     border-radius: 20px;
     padding: 3em;
     align-items:flex-end;
     flex-direction:column-reverse;
+    background-size: cover;
+
 
 }
 
@@ -16,8 +19,9 @@
 .chat_input_field{
     width: inherit;
     border-radius: 20px;
-    background-color: darkslateblue;
+    background-color: #004176;
     font-size: 16px;
+    border: solid white; 
     text-decoration: none;
     padding: 1em;
     color: white; /*not working?*/
