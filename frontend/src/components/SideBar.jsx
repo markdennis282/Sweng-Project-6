@@ -22,7 +22,7 @@ function SideBar() {
         // console.log(formDataObject);
 
         try {
-            await axios.post("http://localhost:8000/source", formDataObject);
+            await axios.post("http://localhost:8000/api/source", formDataObject);
         } catch(error) {
             // console.error("ERROR", error);
         }
