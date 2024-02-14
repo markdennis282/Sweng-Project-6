@@ -6,6 +6,8 @@ import "./SideBar.css";
 import { useState } from "react";
 import axios from "axios";
 
+import { apiUrl } from "../utils/apiAccess";
+
 function SideBar() {
     const [open, setOpen] = useState(false);
     const handleClick = () => {
@@ -22,7 +24,7 @@ function SideBar() {
         // console.log(formDataObject);
 
         try {
-            await axios.post("http://localhost:8000/api/source", formDataObject);
+            await axios.post(apiUrl("/source"), formDataObject);
         } catch(error) {
             // console.error("ERROR", error);
         }
