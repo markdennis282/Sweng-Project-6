@@ -1,4 +1,8 @@
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - 80:80
   backend:
     build: ./backend
     stdin_open: true
@@ -6,8 +10,6 @@ services:
     environment:
       - APP_ENVIRONMENT=production
       - LLM_GPU_LAYERS=1
-    ports:
-      - 8000:8000
     volumes:
       - chroma_db:/app/chroma_db
     deploy:
