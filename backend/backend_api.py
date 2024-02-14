@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from services.llm import query_rag
 from services.source_management import add_source, refresh_all_sources
+from utils import is_production_mode
 
 class Input_Chat(BaseModel):
     #body of text
@@ -21,24 +22,24 @@ class Input_Source(BaseModel):
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:5173"
-]
+if not is_production_mode():
+    origins = [
+        "http://localhost:5173"
+    ]
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["GET", "POST", "PUT", "DELETE"],
+        allow_headers=["*"],
+    )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],
-    allow_headers=["*"],
-)
-
-@app.post("/chat/")
+@app.post("/api/chat/")
 async def chat(input_chat : Input_Chat):
     response = await query_rag(input_chat.prompt, [input_chat.section])
     return {"response" : response}
 
-@app.post("/source/")
+@app.post("/api/source/")
 async def source(input_source : Input_Source):
     # print(input_source.dict())
     # Is there a reason why we have a source_dict variable instead of doing input_source.url?  ~Nancy
@@ -55,7 +56,7 @@ async def source(input_source : Input_Source):
     return {"source" : "function"}
 
 
-@app.post("/refresh/")
+@app.post("/api/refresh/")
 async def refresh():
     # function call to refresh all sources.
     refresh_all_sources()
