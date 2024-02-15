@@ -152,7 +152,6 @@ module.exports = {
                 "super": { "after": false }
             }
         }],
-        "@stylistic/linebreak-style": ["error", "unix"],
         "@stylistic/max-len": ["warn", {"code": 120, "ignoreUrls": true}],
         "@stylistic/max-statements-per-line": ["warn", {"max": 1}],
         "@stylistic/member-delimiter-style": "error",
