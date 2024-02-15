@@ -56,7 +56,7 @@ function ChatBox({ sourceTags }) {
                 <div className="sourcetag">{ sourceTags }</div>
                 <textarea //name="input" webissue
                     rows="6"
-                    placeholder="Type Your Message Here And Hit Qasim ..."
+                    placeholder="Type your message and hit enter ..."
                     className="chat_input_field"
                     value={inputValue}
                     onChange={handleInputChange}
