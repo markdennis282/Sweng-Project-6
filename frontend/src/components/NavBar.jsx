@@ -16,6 +16,12 @@ function NavBar({ onButtonClick }) {
         console.log(buttons[index]);
     };
 
+    const buttonStyle = {
+        height: "50px",
+        width: "140px",
+        margin: "auto"
+    };
+
     return (
         <>
             <div className="navbar">
@@ -23,9 +29,11 @@ function NavBar({ onButtonClick }) {
                     buttons.map((title, index) =>
                         <Button
                             key={index}
-                            status={index === selectedIndex ? "selected" : ""}
-                            name="navButton right"
-                            title={title}
+                            style={buttonStyle}
+                            // status={index === selectedIndex ? "selected" : ""}
+                            // name="navButton right"
+                            text={title}
+                            highlighted={index === selectedIndex}
                             onClick={() => {
                                 handleClick(index);
                             }}

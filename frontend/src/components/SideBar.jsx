@@ -1,6 +1,6 @@
 // SideBar.jsx
 import Button from "./Button";
-import "./Button.css";
+// import "./Button.css";
 import "./SideBar.css";
 
 import { useState } from "react";
@@ -53,12 +53,23 @@ function SideBar() {
 
     };
 
+    const buttonStyle = {
+        height: "50px",
+        width: "160px",
+        margin: "12px auto"
+    };
+
+    const closeButtonStyle = {
+        margin: "12px auto"
+    };
+
     return (
         <>
             { !open ?
-                <Button name="navButton left" title="ADD A SOURCE" onClick={handleClick} /> :
+                <Button style={buttonStyle} text="ADD A SOURCE" onClick={handleClick} /> :
                 <>
-                    <Button name="x" title="X" onClick={handleClick} />
+                    { /* <Button name="x" title="X" onClick={handleClick} /> */ }
+                    <Button style={closeButtonStyle} text="X" onClick={handleClick} />
                     <form onSubmit={handleSubmit}>
                         <label>Source URL</label> <br />
                         <input className="button url" type="text" name="url" required /> <br />
