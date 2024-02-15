@@ -41,24 +41,15 @@ async def chat(input_chat : Input_Chat):
 
 @app.post("/api/source/")
 async def source(input_source : Input_Source):
-    # print(input_source.dict())
-    # Is there a reason why we have a source_dict variable instead of doing input_source.url?  ~Nancy
-    source_dict = input_source.dict()
-    url = source_dict["url"]
-    source_section = source_dict["source_section"]
-    refresh_interval = source_dict["refresh_interval"]
-    print("URL:", url)
-    print("Source Section:", source_section)
-    print("Refresh Interval:", refresh_interval)
-    # a bit unsure about source_section and whether or not it should be declared as a list in the class or if it's ok as is
-    # function call to add a source to the database
-    add_source(url, [source_section], refresh_interval)
+    print("URL:", input_source.url)
+    print("Source Section:", input_source.source_section)
+    print("Refresh Interval:", input_source.refresh_interval)
+    await add_source(input_source.url, [input_source.source_section], input_source.refresh_interval)
     return {"source" : "function"}
 
 
 @app.post("/api/refresh/")
 async def refresh():
-    # function call to refresh all sources.
-    refresh_all_sources()
+    await refresh_all_sources()
     return {"refresh" : "function"}
 

@@ -1,10 +1,12 @@
 // ChatBox.jsx
 import "./ChatBox.css";
 import { useState, useRef } from "react";
-import BgImg from "../assets/millennium_bg.png";
+import axios from "axios";
+import PropTypes from "prop-types";
 
+import { apiUrl } from "../utils/apiAccess";
 
-function ChatBox() {
+function ChatBox({ sourceTags }) {
     const [inputValue, setInputValue] = useState("");
     const [messages, setMessages] = useState([]);
     const chatBottomRef = useRef(null);
@@ -23,13 +25,31 @@ function ChatBox() {
             let sender = "user";
             setMessages([...messages, { sender, contents }]);
             setInputValue("");
+            let response = null;
 
-            setTimeout(() => {
-                // eslint-disable-next-line @stylistic/max-len
-                contents = "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique voluptatum corporis autem fugiat eum perspiciatis incidunt nihil quas, officia, laudantium reprehenderit quasi quo quibusdam? Dolores laudantium iure ab facilis officia?";
-                sender = "ai";
-                setMessages(m => [...m, { sender, contents }]);
-                scrollToBottom();
+            setTimeout(async() => {
+                try {
+                    // response = await axios.get("http://localhost:8000/query_rag", {
+                    //     params: {
+                    //         query: inputValue,
+                    //         sourceTags: sourceTags
+                    //     }
+                    // });
+                    response = await axios.post(apiUrl("/chat"), {
+                        prompt: inputValue,
+                        section: sourceTags
+                    });
+                    // \N IN CHAT
+                    // console.log("source tag : " + sourceTags);
+                    // console.log(response);
+                    console.log(response.config.params);
+                    contents = response.data.response;
+                    sender = "ai";
+                    setMessages(m => [...m, { sender, contents }]);
+                    scrollToBottom();
+                } catch(error) {
+                    console.log("llmError");
+                }
             }, 250);
         }
     };
@@ -37,16 +57,16 @@ function ChatBox() {
 
     return (
         <>
-            <div className="chat_box" style={{ backgroundImage: `url(${BgImg})` }} >
-                <textarea
+            <div className="chat_box">
+                <div className="sourcetag">{ sourceTags }</div>
+                <textarea //name="input" webissue
                     rows="6"
                     placeholder="Type your message and hit enter ..."
                     className="chat_input_field"
                     value={inputValue}
                     onChange={handleInputChange}
-                    onKeyPress={handleInputSubmission}
+                    onKeyDown={handleInputSubmission}
                 />
-
                 <div className="message_box">
                     { messages.map((msg, index) => (
                         <div key={index} className="message">
@@ -61,5 +81,8 @@ function ChatBox() {
     );
 }
 
+ChatBox.propTypes = {
+    sourceTags: PropTypes.string
+};
 
 export default ChatBox;

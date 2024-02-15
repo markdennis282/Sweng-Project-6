@@ -14,6 +14,20 @@ function SideBar() {
         setOpen(prev => !prev);
     };
 
+    const isValidUrl = url => {
+        try {
+            const x = new URL(url);
+            if(x) {
+                console.log("valid");
+                return true;
+            }
+        } catch(error) {
+            console.log("invalid");
+            return false;
+        }
+        return false;
+    };
+
     const handleSubmit = async event => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -23,10 +37,18 @@ function SideBar() {
         });
         // console.log(formDataObject);
 
-        try {
-            await axios.post(apiUrl("/source"), formDataObject);
-        } catch(error) {
-            // console.error("ERROR", error);
+        if(formDataObject.source_section === "Select" ||
+            formDataObject.refresh_interval === "Select" ||
+            !isValidUrl(formDataObject.url)) {
+            // alert("invalid");
+        } else {
+            try {
+                console.log(formDataObject);
+                //await axios.post("http://localhost:8000/source", formDataObject);
+                await axios.post(apiUrl("/source"), formDataObject);
+            } catch(error) {
+                // console.error("Error", error);
+            }
         }
 
     };
