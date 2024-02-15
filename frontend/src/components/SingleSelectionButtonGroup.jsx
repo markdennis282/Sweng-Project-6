@@ -7,13 +7,9 @@ function SingleSelectionButtonGroup({ items, onChange, buttonClassName, ...props
 
     const [selectedIndex, setSelectedIndex] = useState(0);
 
-    //const buttons = ["ALL", "COMPLIANCE", "HR", "TECH"];
-
     const handleClick = index => {
         setSelectedIndex(index);
         onChange(items[index], index);
-        //onButtonClick(buttons[index]);
-        //console.log(buttons[index]);
     };
 
     return (
@@ -24,9 +20,6 @@ function SingleSelectionButtonGroup({ items, onChange, buttonClassName, ...props
                         <Button
                             key={index}
                             className={buttonClassName}
-                            // style={buttonStyle}
-                            // status={index === selectedIndex ? "selected" : ""}
-                            // name="navButton right"
                             text={item}
                             highlighted={index === selectedIndex}
                             onClick={() => {
