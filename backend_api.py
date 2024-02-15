@@ -30,20 +30,29 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+#functions from other backend groups
+async def add_source(url: str, tags: list[str], refresh_interval: int) -> None:
+    print(url)
+    pass
+async def refresh_all_sources() -> None:
+    print("refreshed")
+    pass
+
+@app.get("/query_rag/")
+async def query_rag(query: str, sourceTags: str):
+    print("Query = " + query)
+    print("Source Tag = " + sourceTags)
+    return "Example response from the LLM."
+
 @app.post("/chat/")
 async def chat(input_chat : Input_Chat):
     return {"chat" : "function"}
 
 @app.post("/source/")
 async def source(input_source : Input_Source):
-    # print(input_source.dict())
-    source_dict = input_source.dict()
-    url = source_dict["url"]
-    source_section = source_dict["source_section"]
-    refresh_interval = source_dict["refresh_interval"]
-    print("URL:", url)
-    print("Source Section:", source_section)
-    print("Refresh Interval:", refresh_interval)
+    print("URL:", input_source.url)
+    print("Source Section:", input_source.source_section)
+    print("Refresh Interval:", input_source.refresh_interval)
     return {"source" : "function"}
 
 
