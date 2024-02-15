@@ -1,5 +1,4 @@
-/* ChatBox.css */
-.chat_box{
+.chatBox {
     display: flex;
     height: 60vh;
     width: 80vw;
@@ -11,12 +10,9 @@
     align-items:flex-end;
     flex-direction:column-reverse;
     background-size: cover;
-
-
 }
 
-
-.chat_input_field{
+.chatInputField {
     width: inherit;
     border-radius: 20px;
     background-color: #004176;
@@ -32,7 +28,7 @@
     /* overflow: auto; */
 }
 
-.message_box{
+.messageBox {
     display: flex;
     align-items: normal;
     flex-direction: column;
@@ -42,42 +38,39 @@
 
 }
 
-.message{
+/* .messageContainer {
     text-align: left;
     margin: 2em;
-    
-}
-.message p{
+} */
+
+/* .message p{
     font-size: 16px;
     text-align: justify;
-
-
 }
-.message #user{
+
+.message #user {
     margin-left: 20%;
     direction: rtl;
     text-align: justify;
 }
-.message #ai{
-    margin-right: 20%;
-}
 
-.sender_icon{
+.message #ai {
+    margin-right: 20%;
+} */
+
+/* .senderIcon {
     width: 3em;
     height: 3em;
     border-radius: 100px;
     background-color: white;
     margin-bottom: 1rem;
+} */
 
-}
-
-.sender_icon#user{
-    margin-left:96%;  /*random number aligning right icon: standing in for actual math*/
+/* .senderIcon#user {
+    margin-left:96%;  
     background-color: grey;
 }
-.sender_icon#ai{
-    margin-left:0%;  /*random number aligning right icon: standing in for actual math*/
+.senderIcon#ai {
+    margin-left:0%; 
     background-color: blue;
-
-}
-
+} */

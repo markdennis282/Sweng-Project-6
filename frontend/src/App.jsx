@@ -19,7 +19,7 @@ function App() {
             <div className="bg_gradient">
                 <NavBar items={sourceTags} onChange={handleSourceChange} />
                 <Sidebar />
-                <ChatBox sourceTags={selectedSourceTag} />
+                <ChatBox sourceTag={selectedSourceTag} />
             </div>
         </>
     );
