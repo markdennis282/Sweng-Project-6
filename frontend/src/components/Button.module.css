@@ -1,4 +1,4 @@
-.navButton {
+.button {
     background-color: #065FA8;
     /* height: 65%;
     padding: 10px 20px; */
@@ -11,7 +11,7 @@
     transition: 0.2s;
 }
 
-.navButton:hover {
+.button:hover {
     box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
     border-color: rgb(252, 243, 169);
     color: rgb(252, 243, 169);
@@ -28,6 +28,6 @@
     margin-right: auto;
 } */
 
-.navButton.highlighted {
+.button.highlighted {
     outline: 4px auto aliceblue;
 }
