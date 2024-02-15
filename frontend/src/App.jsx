@@ -7,18 +7,19 @@ import { useState } from "react";
 
 function App() {
 
-    const [sourceTags, setSourceTags] = useState("ALL");
+    const sourceTags = ["ALL", "COMPLIANCE", "HR", "TECH"];
+    const [selectedSourceTag, setSelectedSourceTag] = useState("ALL");
 
-    const handleButtonClick = buttonTitle => {
-        setSourceTags(buttonTitle);
+    const handleSourceChange = item => {
+        setSelectedSourceTag(item);
     };
 
     return (
         <>
             <div className="bg_gradient">
-                <NavBar onButtonClick={handleButtonClick} />
+                <NavBar items={sourceTags} onChange={handleSourceChange} />
                 <Sidebar />
-                <ChatBox sourceTags={sourceTags} />
+                <ChatBox sourceTags={selectedSourceTag} />
             </div>
         </>
     );
