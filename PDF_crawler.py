@@ -32,6 +32,16 @@ class PDFCrawler(BaseCrawler):
         finally:
             document.close()  # Ensure the file is closed after processing
 
+    def return_content(self):
+        try:
+            document = self.fetch_document()
+            content = self.extract_content(document)
+            return content
+        except Exception as e:
+            print(f"Error in returning content: {e}")
+            return None
+
+    
     def run(self):
         # Overriding the run method to handle file opening/closing
         document = self.fetch_document()

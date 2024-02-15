@@ -2,10 +2,46 @@
 
 import time
 import schedule
+import json
 from web_page_crawler import WebPageCrawler
 from PDF_crawler import PDFCrawler  
 from API_crawler import APICrawler
 from file_crawler import FileCrawler
+from DatabaseConnector import DatabaseConnector
+
+
+def run_crawler_on(type, config):
+    if type == "web":
+        web_crawler = WebPageCrawler(config)
+        data = web_crawler.extract_content(web_crawler.fetch_document())
+    elif(type == "pdf"):
+        pdf_crawler = PDFCrawler(config)
+        data = pdf_crawler.return_content()
+    elif type == "api":
+        api_crawler = APICrawler(config)
+        raw_data = api_crawler.fetch_document()
+        data = api_crawler.extract_content(raw_data)
+    elif(type == "file"):
+        file_crawler = FileCrawler(config)
+        data = file_crawler.fetch_document()
+    else:
+        print("Invalid type")
+
+    if data is not None:
+        print("Data extracted successfully, storing in database.")
+        # db_connector = DatabaseConnector(db_type='sqlite', db_name='testingDB.db')
+        # db_connector.connect()
+        # db_connector.store_document(data)
+        # db_connector.disconnect()
+        print(data)
+        print("Data stored successfully.")
+
+
+def run_crawler_from_config_file(configurations):
+    for config in configurations:
+        type = config.get("type")
+        crawler_config = config.get("config")
+        run_crawler_on(type, crawler_config)
 
 
 def run_crawlers():
@@ -41,15 +77,26 @@ def run_crawlers():
     file_crawler = FileCrawler(file_crawler_config)
     file_crawler.run()
     
-# Schedule the `run_crawlers` function to run every hour
-schedule.every(1).hour.do(run_crawlers)
+def schedule_crawlers(configurations):
+    schedule.every(1).hour.do(run_crawler_from_config_file, configurations)
 
 def main():
-    run_crawlers()
-    # Start the scheduled task
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+    with open('crawler_config.json', 'r') as file:
+        configurations = json.load(file)
+
+        run_crawler_from_config_file(configurations)
+        schedule_crawlers(configurations)
+
+        # Start the scheduled task
+        while True:
+            schedule.run_pending()
+            time.sleep(1)
+
+    # run_crawlers()
+    # # Start the scheduled task
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(1)
 
 if __name__ == "__main__":
     main()

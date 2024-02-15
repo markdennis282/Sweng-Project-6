@@ -1,0 +1,29 @@
+[
+    {
+        "type": "web",
+        "config": {
+            "url": "https://en.wikipedia.org/wiki/Millennium_Management,_LLC"
+        }
+    },
+    {
+        "type": "pdf",
+        "config": {
+            "file_path": "/Users/markdennis/Desktop/2024/2024CV.pdf"
+        }
+    },
+    {
+        "type": "api",
+        "config": {
+            "endpoint": "https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=1fe6b55e7c5387ed2ee74d901c1febab",
+            "headers": {
+                "Authorization": "1fe6b55e7c5387ed2ee74d901c1febab"
+            }
+        }
+    },
+    {
+        "type": "file",
+        "config": {
+            "file_path": "/Users/markdennis/Desktop/thirdY/networks/assignment1/java-example/message.txt"
+        }
+    }
+]

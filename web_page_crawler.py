@@ -6,11 +6,17 @@ from base_crawler import BaseCrawler
 
 class WebPageCrawler(BaseCrawler):
     def fetch_document(self):
-        response = requests.get(self.source_config['url'])
-        if response.status_code == 200:
-            return response.text
-        else:
-            raise Exception(f"Failed to fetch {self.source_config['url']}")
+        try:
+            url = self.source_config['url']
+            print(url)
+            response = requests.get(url)
+            if response.status_code == 200:
+                return response.text
+            else:
+                raise Exception(f"Failed to fetch {url}")
+        except KeyError as e:
+            print(f"KeyError in fetch_document: {e}")
+            raise
 
     def extract_content(self, document):
         soup = BeautifulSoup(document, 'html.parser')
