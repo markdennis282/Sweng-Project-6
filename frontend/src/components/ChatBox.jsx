@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
+import { apiUrl } from "../utils/apiAccess";
 
 function ChatBox({ sourceTags }) {
     const [inputValue, setInputValue] = useState("");
@@ -28,17 +29,21 @@ function ChatBox({ sourceTags }) {
 
             setTimeout(async() => {
                 try {
-                    response = await axios.get("http://localhost:8000/query_rag", {
-                        params: {
-                            query: inputValue,
-                            sourceTags: sourceTags
-                        }
+                    // response = await axios.get("http://localhost:8000/query_rag", {
+                    //     params: {
+                    //         query: inputValue,
+                    //         sourceTags: sourceTags
+                    //     }
+                    // });
+                    response = await axios.post(apiUrl("/chat"), {
+                        prompt: inputValue,
+                        section: sourceTags
                     });
                     // \N IN CHAT
                     // console.log("source tag : " + sourceTags);
                     // console.log(response);
                     console.log(response.config.params);
-                    contents = response.data;
+                    contents = response.data.response;
                     sender = "ai";
                     setMessages(m => [...m, { sender, contents }]);
                     scrollToBottom();

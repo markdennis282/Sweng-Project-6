@@ -44,7 +44,8 @@ function SideBar() {
         } else {
             try {
                 console.log(formDataObject);
-                await axios.post("http://localhost:8000/source", formDataObject);
+                //await axios.post("http://localhost:8000/source", formDataObject);
+                await axios.post(apiUrl("/source"), formDataObject);
             } catch(error) {
                 // console.error("Error", error);
             }
