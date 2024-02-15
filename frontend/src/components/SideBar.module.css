@@ -1,0 +1,21 @@
+.formInput {
+    border-radius: 15px;
+    height: 32px;
+    width: 150px;
+    margin: 10px;
+}
+
+.submit {
+    width: 70px;
+    height: 30px;
+}
+
+.openButton {
+    height: 50px;
+    width: 160px;
+    margin: 12px auto;
+}
+
+.closeButton {
+    margin: 12px auto;
+}

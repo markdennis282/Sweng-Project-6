@@ -1,31 +1,17 @@
-// SideBar.jsx
-import Button from "./Button";
-// import "./Button.css";
-import "./SideBar.css";
-
 import { useState } from "react";
 import axios from "axios";
 
 import { apiUrl } from "../utils/apiAccess";
+import { isValidUrl } from "../utils/validation";
+
+import Button from "./Button";
+
+import styles from "./SideBar.module.css";
 
 function SideBar() {
     const [open, setOpen] = useState(false);
     const handleClick = () => {
         setOpen(prev => !prev);
-    };
-
-    const isValidUrl = url => {
-        try {
-            const x = new URL(url);
-            if(x) {
-                console.log("valid");
-                return true;
-            }
-        } catch(error) {
-            console.log("invalid");
-            return false;
-        }
-        return false;
     };
 
     const handleSubmit = async event => {
@@ -35,7 +21,6 @@ function SideBar() {
         formData.forEach((value, key) => {
             formDataObject[key] = value;
         });
-        // console.log(formDataObject);
 
         if(formDataObject.source_section === "Select" ||
             formDataObject.refresh_interval === "Select" ||
@@ -44,57 +29,43 @@ function SideBar() {
         } else {
             try {
                 console.log(formDataObject);
-                //await axios.post("http://localhost:8000/source", formDataObject);
                 await axios.post(apiUrl("/source"), formDataObject);
             } catch(error) {
-                // console.error("Error", error);
+                console.error(error);
             }
         }
-
-    };
-
-    const buttonStyle = {
-        height: "50px",
-        width: "160px",
-        margin: "12px auto"
-    };
-
-    const closeButtonStyle = {
-        margin: "12px auto"
     };
 
     return (
         <>
             { !open ?
-                <Button style={buttonStyle} text="ADD A SOURCE" onClick={handleClick} /> :
+                <Button className={styles.openButton} text="ADD A SOURCE" onClick={handleClick} /> :
                 <>
-                    { /* <Button name="x" title="X" onClick={handleClick} /> */ }
-                    <Button style={closeButtonStyle} text="X" onClick={handleClick} />
+                    <Button className={styles.closeButton} text="X" onClick={handleClick} />
                     <form onSubmit={handleSubmit}>
-                        <label>Source URL</label> <br />
-                        <input className="button url" type="text" name="url" required /> <br />
-                        <label>Access Control</label> <br />
-                        <select className="button accessCtrl" name="source_section">
+                        <label htmlFor="url">Source URL</label> <br />
+                        <input className={styles.formInput} type="text" name="url" id="url" required /> <br />
+                        <label htmlFor="accessControl">Access Control</label> <br />
+                        <select className={styles.formInput} name="source_section" id="accessControl">
                             <option>Select</option>
                             <option value="all">All</option>
                             <option value="compliance">Compliance</option>
                             <option value="hr">HR</option>
                             <option value="tech">TECH</option>
                         </select> <br />
-                        <label>Refresh Interval</label> <br />
-                        <select className="button refreshInt" name="refresh_interval">
+                        <label htmlFor="refreshInterval">Refresh Interval</label> <br />
+                        <select className={styles.formInput} name="refresh_interval" id="refreshInterval">
                             <option>Select</option>
                             <option value="5">5min</option>
                             <option value="30">30min</option>
                             <option value="60">1hr</option>
                         </select> <br />
-                        <input className="button submit" type="submit" />
+                        <input className={`${styles.formInput} ${styles.submit}`} type="submit" />
                     </form>
                 </>
             }
         </>
     );
-
 }
 
 export default SideBar;
