@@ -1,79 +1,66 @@
-// ChatBox.jsx
-import "./ChatBox.css";
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
+import ChatMessage from "./ChatMessage";
+
 import { apiUrl } from "../utils/apiAccess";
 
-function ChatBox({ sourceTags }) {
-    const [inputValue, setInputValue] = useState("");
+import styles from "./Chatbox.module.css";
+
+function ChatBox({ sourceTag }) {
     const [messages, setMessages] = useState([]);
+    const userInputRef = useRef(null);
     const chatBottomRef = useRef(null);
 
-    // Function to scroll to the bottom of the chat box
-    const scrollToBottom = () => {
-        chatBottomRef.current.scrollIntoView({ behavior: "smooth" });
-    };
-    const handleInputChange = event => {
-        setInputValue(event.target.value);
-    };
+    // scrolls to the bottom of the chat box
+    useEffect(() => {
+        chatBottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
 
-    const handleInputSubmission = event => {
-        if(event.key === "Enter" && inputValue.trim() !== "") {
-            let contents = inputValue.trim();
-            let sender = "user";
-            setMessages([...messages, { sender, contents }]);
-            setInputValue("");
-            let response = null;
+    const handleInputSubmission = async event => {
+        if(event.key !== "Enter") return;
+        const messageContents = userInputRef.current.value.trim();
+        userInputRef.current.value = "";
+        if(!messageContents) return;
 
-            setTimeout(async() => {
-                try {
-                    // response = await axios.get("http://localhost:8000/query_rag", {
-                    //     params: {
-                    //         query: inputValue,
-                    //         sourceTags: sourceTags
-                    //     }
-                    // });
-                    response = await axios.post(apiUrl("/chat"), {
-                        prompt: inputValue,
-                        section: sourceTags
-                    });
-                    // \N IN CHAT
-                    // console.log("source tag : " + sourceTags);
-                    // console.log(response);
-                    console.log(response.config.params);
-                    contents = response.data.response;
-                    sender = "ai";
-                    setMessages(m => [...m, { sender, contents }]);
-                    scrollToBottom();
-                } catch(error) {
-                    console.log("llmError");
-                }
-            }, 250);
+        setMessages([...messages, { sender: "user", contents: messageContents }]);
+
+        try {
+            const response = await axios.post(apiUrl("/chat"), {
+                prompt: messageContents,
+                section: sourceTag
+            });
+            setMessages(m => [...m, { sender: "ai", contents: response.data.response }]);
+        } catch(error) {
+            console.log(error);
         }
+
+    };
+
+    const handleInputClear = event => {
+        if(event.key !== "Enter") return;
+        userInputRef.current.value = "";
     };
 
 
     return (
         <>
-            <div className="chat_box">
-                <div className="sourcetag">{ sourceTags }</div>
-                <textarea //name="input" webissue
+            <div className={styles.chatBox}>
+                <div className="sourcetag">{ sourceTag }</div>
+                <textarea
+                    name="chatInput"
                     rows="6"
                     placeholder="Type your message and hit enter ..."
-                    className="chat_input_field"
-                    value={inputValue}
-                    onChange={handleInputChange}
+                    className={styles.chatInputField}
                     onKeyDown={handleInputSubmission}
+                    onKeyUp={handleInputClear}
+                    ref={userInputRef}
                 />
-                <div className="message_box">
-                    { messages.map((msg, index) => (
-                        <div key={index} className="message">
-                            <div className="sender_icon" id={msg.sender} />
-                            <p key={index} id={msg.sender}>{ msg.contents }</p>
-                        </div>
-                    ))}
+                <div className={styles.messageBox}>
+                    { messages.map((msg, index) =>
+                        <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
+                    ) }
                     <div ref={chatBottomRef} />
                 </div>
             </div>
@@ -82,7 +69,7 @@ function ChatBox({ sourceTags }) {
 }
 
 ChatBox.propTypes = {
-    sourceTags: PropTypes.string
+    sourceTag: PropTypes.string.isRequired
 };
 
 export default ChatBox;

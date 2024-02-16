@@ -1,44 +1,24 @@
-// NavBar.jsx
-import "./NavBar.css";
-import Button from "./Button.jsx";
-import { useState } from "react";
 import PropTypes from "prop-types";
 
-function NavBar({ onButtonClick }) {
+import SingleSelectionButtonGroup from "./SingleSelectionButtonGroup";
 
-    const [selectedIndex, setSelectedIndex] = useState(0);
+import styles from "./NavBar.module.css";
 
-    const buttons = ["ALL", "COMPLIANCE", "HR", "TECH"];
-
-    const handleClick = index => {
-        setSelectedIndex(index);
-        onButtonClick(buttons[index]);
-        console.log(buttons[index]);
-    };
+function NavBar({ items, onChange }) {
 
     return (
-        <>
-            <div className="navbar">
-                {
-                    buttons.map((title, index) =>
-                        <Button
-                            key={index}
-                            status={index === selectedIndex ? "selected" : ""}
-                            name="navButton right"
-                            title={title}
-                            onClick={() => {
-                                handleClick(index);
-                            }}
-                        />
-                    )
-                }
-            </div>
-        </>
+        <SingleSelectionButtonGroup
+            className={styles.navbar}
+            buttonClassName={styles.navbarButton}
+            items={items}
+            onChange={onChange}
+        />
     );
 }
 
 NavBar.propTypes = {
-    onButtonClick: PropTypes.func
+    items: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onChange: PropTypes.func.isRequired // should take (item: string, index: number)
 };
 
 export default NavBar;

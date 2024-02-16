@@ -1,33 +1,33 @@
-/* Button.css  */
-
-.navButton{
+.button {
     background-color: #065FA8;
-    height: 65%;
-    padding: 10px 20px;
+    /* height: 65%;
+    padding: 10px 20px; */
     color:aliceblue;
     /* margin-left:10px; */
     /* margin-right: auto; */
-    border-radius: 18px;
+    /* width: 140px;
+    margin-right: auto;
+    border-radius: 18px; */
     transition: 0.2s;
 }
 
-.navButton:hover{
+.button:hover {
     box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
     border-color: rgb(252, 243, 169);
     color: rgb(252, 243, 169);
 }
 
-.navButton.left{
+/* .navButton.left{
     margin-left: 10px;
     width: 160px;
     margin-right:auto;
-}
+} */
 
-.navButton.right{
+/* .navButton.right{
     width: 140px;
     margin-right: auto;
-}
+} */
 
-.navButton#selected{
+.button.highlighted {
     outline: 4px auto aliceblue;
 }

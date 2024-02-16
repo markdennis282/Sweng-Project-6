@@ -1,16 +1,19 @@
-// Button.jsx
-import "./Button.css";
 import PropTypes from "prop-types";
 
-function Button({ name, title, onClick, status }) {
-    return <button onClick={onClick} type="button" id={status} className={name}> { title }</button>;
+import styles from "./Button.module.css";
+
+function Button({ text, highlighted, className, ...props }) {
+    let cssStylesClassNames = styles.button;
+    if(highlighted) cssStylesClassNames += ` ${styles.highlighted}`;
+    const fullClassName = className ? `${cssStylesClassNames} ${className}` : cssStylesClassNames;
+
+    return <button className={fullClassName} {...props}>{ text }</button>;
 }
 
 Button.propTypes = {
-    name: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    onClick: PropTypes.func,
-    status: PropTypes.string
+    text: PropTypes.string.isRequired,
+    highlighted: PropTypes.bool,
+    className: PropTypes.string
 };
 
 export default Button;
