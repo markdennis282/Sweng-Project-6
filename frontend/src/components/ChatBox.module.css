@@ -1,0 +1,76 @@
+.chatBox {
+    display: flex;
+    height: 60vh;
+    width: 80vw;
+    background-color: rgb(20, 31, 62);
+    border: solid white; 
+    margin-top: 20px;
+    border-radius: 20px;
+    padding: 3em;
+    align-items:flex-end;
+    flex-direction:column-reverse;
+    background-size: cover;
+}
+
+.chatInputField {
+    width: inherit;
+    border-radius: 20px;
+    background-color: #004176;
+    font-size: 16px;
+    border: solid white; 
+    text-decoration: none;
+    padding: 1em;
+    color: white; /*not working?*/
+    align-self: center;
+    resize: none;
+    height: 4em;
+    min-height: 4em;
+    /* overflow: auto; */
+}
+
+.messageBox {
+    display: flex;
+    align-items: normal;
+    flex-direction: column;
+    width: inherit;
+    overflow:scroll;
+    margin-bottom: 20px;
+
+}
+
+/* .messageContainer {
+    text-align: left;
+    margin: 2em;
+} */
+
+/* .message p{
+    font-size: 16px;
+    text-align: justify;
+}
+
+.message #user {
+    margin-left: 20%;
+    direction: rtl;
+    text-align: justify;
+}
+
+.message #ai {
+    margin-right: 20%;
+} */
+
+/* .senderIcon {
+    width: 3em;
+    height: 3em;
+    border-radius: 100px;
+    background-color: white;
+    margin-bottom: 1rem;
+} */
+
+/* .senderIcon#user {
+    margin-left:96%;  
+    background-color: grey;
+}
+.senderIcon#ai {
+    margin-left:0%; 
+    background-color: blue;
+} */
