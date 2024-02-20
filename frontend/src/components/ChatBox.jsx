@@ -6,7 +6,7 @@ import ChatMessage from "./ChatMessage";
 
 import { apiUrl } from "../utils/apiAccess";
 
-import styles from "./Chatbox.module.css";
+import styles from "./ChatBox.module.css";
 
 function ChatBox({ sourceTag }) {
     const [messages, setMessages] = useState([]);
