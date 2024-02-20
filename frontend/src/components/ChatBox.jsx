@@ -48,6 +48,14 @@ function ChatBox({ sourceTag }) {
         <>
             <div className={styles.chatBox}>
                 <div className="sourcetag">{ sourceTag }</div>
+
+                <div className={styles.messageBox}>
+                    { messages.map((msg, index) =>
+                        <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
+                    ) }
+                    <div ref={chatBottomRef} />
+                </div>
+
                 <textarea
                     name="chatInput"
                     rows="6"
@@ -57,12 +65,6 @@ function ChatBox({ sourceTag }) {
                     onKeyUp={handleInputClear}
                     ref={userInputRef}
                 />
-                <div className={styles.messageBox}>
-                    { messages.map((msg, index) =>
-                        <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
-                    ) }
-                    <div ref={chatBottomRef} />
-                </div>
             </div>
         </>
     );

@@ -1,7 +1,8 @@
-
-
 .chatBox {
-    display: flex;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
     height: 60vh;
     width: 80vw;
     background-image: url("../assets/millennium_bg.png");
@@ -10,12 +11,12 @@
     margin-top: 20px;
     border-radius: 20px;
     padding: 3em;
-    align-items:flex-end;
-    flex-direction:column-reverse;
     background-size: cover;
 }
 
 .chatInputField {
+    align-self: center;
+
     width: inherit;
     border-radius: 20px;
     background-color: #004176;
@@ -24,17 +25,20 @@
     text-decoration: none;
     padding: 1em;
     color: white; /*not working?*/
-    align-self: center;
     resize: none;
     height: 4em;
     min-height: 4em;
     /* overflow: auto; */
 }
 
+.sourcetag {
+    position: absolute;
+    top: 50px;
+    bottom: 10px;
+}
 .messageBox {
-    display: flex;
-    align-items: normal;
     flex-direction: column;
+    align-items: flex-end;
     width: inherit;
     overflow:scroll;
     margin-bottom: 20px;
