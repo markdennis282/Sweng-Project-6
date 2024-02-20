@@ -1,7 +1,10 @@
+
+
 .chatBox {
     display: flex;
     height: 60vh;
     width: 80vw;
+    background-image: url("../assets/millennium_bg.png");
     background-color: rgb(20, 31, 62);
     border: solid white; 
     margin-top: 20px;
