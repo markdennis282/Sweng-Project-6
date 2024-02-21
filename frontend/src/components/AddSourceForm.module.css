@@ -1,3 +1,7 @@
+.header {
+    font-size: 2rem;
+}
+
 .formInput {
     border-radius: 15px;
     height: 32px;
@@ -10,7 +14,7 @@
     height: 30px;
 }
 
-.openButton {
+/* .openButton {
     height: 50px;
     width: 160px;
     margin: 12px auto;
@@ -18,4 +22,4 @@
 
 .closeButton {
     margin: 12px auto;
-}
+} */
