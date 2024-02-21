@@ -29,26 +29,16 @@ function ChatBox({ sourceTags }) {
 
             setTimeout(async() => {
                 try {
-                    // response = await axios.get("http://localhost:8000/query_rag", {
-                    //     params: {
-                    //         query: inputValue,
-                    //         sourceTags: sourceTags
-                    //     }
-                    // });
                     response = await axios.post(apiUrl("/chat"), {
                         prompt: inputValue,
                         section: sourceTags
                     });
-                    // \N IN CHAT
-                    // console.log("source tag : " + sourceTags);
-                    // console.log(response);
-                    console.log(response.config.params);
                     contents = response.data.response;
                     sender = "ai";
                     setMessages(m => [...m, { sender, contents }]);
                     scrollToBottom();
                 } catch(error) {
-                    console.log("llmError");
+                    // console.log("llmError");
                 }
             }, 250);
         }
@@ -59,7 +49,8 @@ function ChatBox({ sourceTags }) {
         <>
             <div className="chat_box">
                 <div className="sourcetag">{ sourceTags }</div>
-                <textarea //name="input" webissue
+                <textarea
+                    name="chatInput"
                     rows="6"
                     placeholder="Type your message and hit enter ..."
                     className="chat_input_field"
@@ -68,12 +59,12 @@ function ChatBox({ sourceTags }) {
                     onKeyDown={handleInputSubmission}
                 />
                 <div className="message_box">
-                    { messages.map((msg, index) => (
+                    { messages.map((msg, index) =>
                         <div key={index} className="message">
                             <div className="sender_icon" id={msg.sender} />
                             <p key={index} id={msg.sender}>{ msg.contents }</p>
                         </div>
-                    ))}
+                    ) }
                     <div ref={chatBottomRef} />
                 </div>
             </div>

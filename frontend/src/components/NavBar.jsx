@@ -13,7 +13,7 @@ function NavBar({ onButtonClick }) {
     const handleClick = index => {
         setSelectedIndex(index);
         onButtonClick(buttons[index]);
-        console.log(buttons[index]);
+        // console.log(buttons[index]);
     };
 
     return (
