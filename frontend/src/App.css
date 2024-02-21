@@ -2,16 +2,13 @@
   max-width: 1280px;
 } */
 
-*{
+* {
   overscroll-behavior: none;
   scroll-behavior: smooth;
   text-align: center; 
   justify-content: center;
-
 }
 
 body {
   background: #034072;
 }
-
-

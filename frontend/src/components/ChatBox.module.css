@@ -4,7 +4,7 @@
     justify-content: space-between;
     position: relative;
     height: 60vh;
-    width: 80vw;
+    /* width: 80vw; */
     background-image: url("../assets/millennium_bg.png");
     background-color: rgb(20, 31, 62);
     border: solid white; 
@@ -16,8 +16,7 @@
 
 .chatInputField {
     align-self: center;
-
-    width: inherit;
+    width: 100%;
     border-radius: 20px;
     background-color: #004176;
     font-size: 16px;
