@@ -1,17 +1,18 @@
 .chatBox {
     display: flex; 
     flex-direction: column;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: flex-end;
     position: relative;
-    height: 60vh;
+    height: 70vh;
     /* width: 80vw; */
     background-image: url("../assets/millennium_bg.png");
+    background-size: cover;
     background-color: rgb(20, 31, 62);
     border: solid white; 
     margin-top: 20px;
     border-radius: 20px;
-    padding: 3em;
-    background-size: cover;
+    padding: 0 3em 3em;
 }
 
 .chatInputField {
@@ -35,13 +36,33 @@
     top: 50px;
     bottom: 10px;
 }
+
 .messageBox {
     flex-direction: column;
     align-items: flex-end;
     width: inherit;
-    overflow:scroll;
-    margin-bottom: 20px;
+    /* overflow:scroll; */
+    overflow-x: hidden;
+    /* margin-bottom: 20px; */
+}
 
+.messageBox::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+  
+.messageBox::-webkit-scrollbar-button {
+    display: none;
+}
+
+.messageBox::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 6px;
+}
+
+.messageBox::-webkit-scrollbar-thumb {
+    background-color: rgba(240, 248, 255, 0.33);
+    border-radius: 6px;
 }
 
 /* .messageContainer {

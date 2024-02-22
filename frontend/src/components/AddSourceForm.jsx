@@ -50,7 +50,7 @@ function AddSourceForm() {
                     <option value="30">30min</option>
                     <option value="60">1hr</option>
                 </select> <br />
-                <input className={`${styles.formInput} ${styles.submit}`} type="submit" />
+                <button type="submit" className={styles.submitButton}>Submit</button>
             </form>
         </>
     );

@@ -47,7 +47,7 @@ function ChatBox({ sourceTag }) {
     return (
         <>
             <div className={styles.chatBox}>
-                <div className="sourcetag">{ sourceTag }</div>
+                { /* <div className="sourcetag">{ sourceTag }</div> */ }
 
                 <div className={styles.messageBox}>
                     { messages.map((msg, index) =>
@@ -59,7 +59,7 @@ function ChatBox({ sourceTag }) {
                 <textarea
                     name="chatInput"
                     rows="6"
-                    placeholder="Type your message and hit enter ..."
+                    placeholder="Type your query and hit enter..."
                     className={styles.chatInputField}
                     onKeyDown={handleInputSubmission}
                     onKeyUp={handleInputClear}

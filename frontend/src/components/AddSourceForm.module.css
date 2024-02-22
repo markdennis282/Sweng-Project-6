@@ -3,15 +3,35 @@
 }
 
 .formInput {
-    border-radius: 15px;
     height: 32px;
     width: 150px;
     margin: 10px;
+    border-radius: 8px;
+    background-color: #065FA8;
+    border: none;
 }
 
-.submit {
+.submitButton {
     width: 70px;
-    height: 30px;
+    height: 32px;
+    margin: 20px;
+    border-radius: 8px;
+    background-color: #065FA8;
+    border: 1px solid transparent;
+    /* font-size: 1em;
+    font-weight: 500; */
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    color: aliceblue;
+    transition: 0.2s;
+}
+
+.submitButton:hover {
+    border-color: #646cff;
+    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
+    border-color: rgb(252, 243, 169);
+    color: rgb(252, 243, 169);
 }
 
 /* .openButton {
