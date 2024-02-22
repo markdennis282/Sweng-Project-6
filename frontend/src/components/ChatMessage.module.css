@@ -7,7 +7,7 @@
     font-size: 16px;
     text-align: justify;
     margin-left: 20%;
-    direction: rtl;
+    text-align: right;
 }
 
 .messageAi {
@@ -16,22 +16,12 @@
     margin-right: 20%;
 }
 
-.senderIconUser {
-    width: 3em;
-    height: 3em;
-    border-radius: 100px;
-    background-color: white;
+.userIcon {
+    margin-left: calc(100% - 1.5em);
     margin-bottom: 1rem;
-    margin-left:96%;  /*random number aligning right icon: standing in for actual math*/
-    background-color: grey;
 }
 
-.senderIconAi {
-    width: 3em;
-    height: 3em;
-    border-radius: 100px;
-    background-color: white;
+.aiIcon {
+    margin-left: -1.5em;
     margin-bottom: 1rem;
-    margin-left:0%;  /*random number aligning right icon: standing in for actual math*/
-    background-color: blue;
 }
