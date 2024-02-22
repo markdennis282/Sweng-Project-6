@@ -1,3 +1,4 @@
+/* eslint-disable @stylistic/max-len */
 import axios from "axios";
 
 import { apiUrl } from "../utils/apiAccess";
@@ -34,9 +35,9 @@ function AddSourceForm() {
             <h1 className={styles.header}>Add a new source</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="url">Source URL</label> <br />
-                <input className={styles.formInput} type="text" name="url" id="url" required /> <br />
+                <input className={styles.formInput} type="text" name="url" id="url" required placeholder="e.g. www.amazon/gdpr" /> <br />
                 <label htmlFor="accessControl">Access Control</label> <br />
-                <select className={styles.formInput} name="source_section" id="accessControl">
+                <select className={styles.formInput} name="source_section" id="accessControl" >
                     <option>Select</option>
                     <option value="all">All</option>
                     <option value="compliance">Compliance</option>

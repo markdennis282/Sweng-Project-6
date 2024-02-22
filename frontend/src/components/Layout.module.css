@@ -21,16 +21,23 @@
     position: absolute;
     left: 0;
     top: 50%;
+    transition: transform 0.3s ease;
     transform: translate(0, -50%);
+    transition: 0.25s;
     z-index: 9999;
     height: 50px;
     padding: 0 3px;
     background-color: transparent;
     border: none;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    
+
 }
 
+.menuButton:hover {
+    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
+    border-radius: 10px;
+}
 .menuButtonTransformed {
     transform: translate(calc(250px - 100%), -50%);
 }

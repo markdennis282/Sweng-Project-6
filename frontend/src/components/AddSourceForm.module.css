@@ -2,19 +2,35 @@
     font-size: 2rem;
 }
 
+
 .formInput {
     height: 32px;
     width: 150px;
-    margin: 10px;
+    transition: 0.2s;
+    margin-top: 5px;
+    margin-bottom: 20px;
     border-radius: 8px;
     background-color: #065FA8;
     border: none;
+    
 }
+
+.formInput:hover{
+    border: solid white;
+    border-color: #646cff;
+    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
+    border-color: rgb(255, 255, 255);
+}
+
+.formInput::placeholder{
+    color: rgb(192, 192, 192)
+}
+
 
 .submitButton {
     width: 70px;
     height: 32px;
-    margin: 20px;
+    margin: 15px;
     border-radius: 8px;
     background-color: #065FA8;
     border: 1px solid transparent;
@@ -28,11 +44,13 @@
 }
 
 .submitButton:hover {
-    border-color: #646cff;
     box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
     border-color: rgb(252, 243, 169);
-    color: rgb(252, 243, 169);
+    background-color: #2b85ce;
+
 }
+
+
 
 /* .openButton {
     height: 50px;
