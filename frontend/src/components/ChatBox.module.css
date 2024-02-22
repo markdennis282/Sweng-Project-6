@@ -1,16 +1,15 @@
 .chatBox {
     display: flex; 
     flex-direction: column;
-    /* justify-content: space-between; */
+    margin-top: 60px;
     justify-content: flex-end;
     position: relative;
     height: 70vh;
-    /* width: 80vw; */
     background-image: url("../assets/millennium_bg.png");
     background-size: cover;
     background-color: rgb(20, 31, 62);
     border: solid white; 
-    margin-top: 20px;
+    
     border-radius: 20px;
     padding: 0 3em 3em;
 }
@@ -38,10 +37,6 @@
 
 .chatInputField:hover {
     box-shadow: 0 0 4px 4px rgba(137, 214, 255, 0.7); 
-    /* border-color: rgb(252, 243, 169); */
-    .chatInputField::placeholder{
-        color: white;
-    }
 
 }
 

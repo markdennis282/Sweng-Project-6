@@ -30,12 +30,11 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    
 
 }
 
 .menuButton:hover {
-    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
+    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.67); 
     border-radius: 10px;
 }
 .menuButtonTransformed {
