@@ -4,6 +4,7 @@ import AddSourceForm from "./components/AddSourceForm.jsx";
 import ChatBox from "./components/ChatBox.jsx";
 import Layout from "./components/Layout.jsx";
 import NavBar from "./components/NavBar.jsx";
+import LogoScreen from "./components/LogoScreen.jsx";
 
 import "./App.css";
 
@@ -23,6 +24,7 @@ function App() {
                 <ChatBox sourceTag={selectedSourceTag} />
             </Layout>
         </>
+        // <LogoScreen /> /* errors happening with images not appearing when making ternary to change screen*/
     );
 }
 
