@@ -13,6 +13,10 @@ function ChatBox({ sourceTag }) {
     const userInputRef = useRef(null);
     const chatBottomRef = useRef(null);
 
+    useEffect(() => {
+        setMessages([...messages, { sender: "system", contents: sourceTag }]);
+    }, [sourceTag]);
+
     // scrolls to the bottom of the chat box
     useEffect(() => {
         chatBottomRef.current?.scrollIntoView({ behavior: "smooth" });
