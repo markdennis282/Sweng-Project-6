@@ -15,7 +15,12 @@
     text-align: justify;
     margin-right: 20%;
 }
-
+.messageSystem {
+    font-size: 16px;
+    text-align: center;
+    /* margin-left: 50%;
+    margin-right: 50%; */
+}
 .userIcon {
     margin-left: calc(100% - 1.5em);
     margin-bottom: 1rem;

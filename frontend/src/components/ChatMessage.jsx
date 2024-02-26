@@ -20,6 +20,13 @@ function ChatMessage({ sender, contents, ...props }) {
             </div>
         );
     }
+    if(sender === "system") {
+        return (
+            <div className={styles.messageContainer} {...props}>
+                <p className={styles.messageSystem}>{ contents }</p>
+            </div>
+        );
+    }
 
     throw new Error("Invalid message type");
 }
