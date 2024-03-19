@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot tests Should render correctly (ai message) 1`] = `
+<div>
+  <div
+    style={
+      {
+        "backgroundColor": "#004176",
+        "height": "3em",
+        "width": "3em",
+      }
+    }
+  >
+    <div>
+      <img
+        src="ai-icon.svg"
+      />
+    </div>
+  </div>
+  <p>
+    ai contents
+  </p>
+</div>
+`;
+
+exports[`Snapshot tests Should render correctly (system message) 1`] = `
+<div>
+  <p>
+    system contents
+  </p>
+</div>
+`;
+
+exports[`Snapshot tests Should render correctly (user message) 1`] = `
+<div>
+  <div
+    style={
+      {
+        "backgroundColor": "#012A4E",
+        "height": "3em",
+        "width": "3em",
+      }
+    }
+  >
+    <div>
+      <img
+        src="user-icon.svg"
+      />
+    </div>
+  </div>
+  <p>
+    user contents
+  </p>
+</div>
+`;
