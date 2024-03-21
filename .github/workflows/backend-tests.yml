@@ -23,4 +23,4 @@ jobs:
       - name: Install pytest
         run: pip install pytest
       - name: Test with pytest
-        run: pytest
+        run: pytest backend
