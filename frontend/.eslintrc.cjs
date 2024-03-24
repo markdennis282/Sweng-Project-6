@@ -15,8 +15,8 @@ module.exports = {
     rules: {
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
         "no-unused-vars": "warn",
+        "no-constant-condition": ["error", { "checkLoops": false }],
 
-        "no-await-in-loop": "error",
         "no-constant-binary-expression": "error",
         "no-constructor-return": "error",
         "no-duplicate-imports": "error",

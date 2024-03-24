@@ -1,8 +1,11 @@
-from fastapi import FastAPI
-from pydantic import BaseModel
+import json
+from typing import AsyncGenerator
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
+from pydantic import BaseModel
 
-from services.llm import query_rag
+from services.llm import query_rag, query_rag_streaming_generator
 from services.source_management import add_source, refresh_all_sources
 from utils import is_production_mode
 
@@ -38,6 +41,19 @@ if not is_production_mode():
 async def chat(input_chat : Input_Chat):
     response = await query_rag(input_chat.prompt, [input_chat.section])
     return {"response" : response}
+
+def sse_streaming_wrapper(request: Request, generator: AsyncGenerator):
+    async def event_generator():
+        async for value in generator:
+            yield json.dumps(value)
+            if await request.is_disconnected():
+                break
+    return event_generator()
+
+@app.post("/api/chat_stream")
+async def chat_stream(input_chat: Input_Chat, request: Request):
+    generator = query_rag_streaming_generator(input_chat.prompt, [input_chat.section])
+    return StreamingResponse(sse_streaming_wrapper(request, generator), media_type="application/json")
 
 @app.post("/api/source/")
 async def source(input_source : Input_Source):
