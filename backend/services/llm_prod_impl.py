@@ -1,4 +1,6 @@
-from llm.query import query
+import pprint
+
+from llm.workflow import compiled_workflow
 
 async def query_rag(query_string: str, source_tags: list[str]) -> str:
     """
@@ -9,6 +11,17 @@ async def query_rag(query_string: str, source_tags: list[str]) -> str:
     Throws if an error occurs while generating the response.
     """
     
-    # TODO finish the implementation
-    response = query(query_string)
+    inputs = {"keys": {"question": query_string}}
+    
+    for output in compiled_workflow.stream(inputs):
+        for key, value in output.items():
+            # Node
+            pprint.pprint(f"Node '{key}':")
+            # Optional: print full state at each node
+            pprint.pprint(value["keys"], indent=2, width=80, depth=None)
+        pprint.pprint("\n---\n")
+
+    # Final generation
+    response = value['keys']['generation']
+    pprint.pprint(response)
     return response
