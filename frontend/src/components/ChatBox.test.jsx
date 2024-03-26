@@ -31,6 +31,7 @@ describe ('ChatBox Component', () => {
         expect(await screen.findByText("Hi! How can I help you")).toBeInTheDocument();
     });
 
+<<<<<<< Updated upstream
 
     //TODO
     // check 'not relevant' message 
@@ -39,6 +40,8 @@ describe ('ChatBox Component', () => {
     
     
 
+=======
+>>>>>>> Stashed changes
     // messages added correctly 
     it ("should add the user message and clear the input when Enter key is pressed", async() => {
         render(<ChatBox sourceTag={sourceTag} />);
@@ -58,6 +61,7 @@ describe ('ChatBox Component', () => {
         expect(screen.getByText(sourceTag)).toBeInTheDocument();
     });
 
+<<<<<<< Updated upstream
 
     //TODO
     // messages scrolls to bottom
@@ -65,6 +69,10 @@ describe ('ChatBox Component', () => {
 
 
     });
+=======
+    //TODO
+    // messages scrolls to bottom - can't figure out how to test LLM response to trigger scrollInView 
+>>>>>>> Stashed changes
     
 
 });
