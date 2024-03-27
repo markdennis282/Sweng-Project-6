@@ -25,5 +25,17 @@
         "config": {
             "file_path": "/Users/markdennis/Desktop/thirdY/networks/assignment1/java-example/message.txt"
         }
+    },
+    {
+        "type": "web",
+        "config": {
+            "url": "https://example.com/new_url"
+        }
+    },
+    {
+        "type": "web",
+        "config": {
+            "url": "https://example.com/new_url123"
+        }
     }
 ]
