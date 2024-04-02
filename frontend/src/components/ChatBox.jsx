@@ -7,10 +7,13 @@ import { apiUrl } from "../utils/apiAccess";
 
 import styles from "./ChatBox.module.css";
 
+import BounceLoader from "react-spinners/BounceLoader";
+
 function ChatBox({ sourceTag }) {
     const [messages, setMessages] = useState([]);
     const userInputRef = useRef(null);
     const chatBottomRef = useRef(null);
+    const [loading, setLoading] = useState(false);
 
     const addMessage = newMessage => {
         setMessages(m => [...m, newMessage]);
@@ -33,6 +36,8 @@ function ChatBox({ sourceTag }) {
         if(!messageContents) return;
 
         addMessage({ sender: "user", contents: messageContents });
+
+        setLoading(true);
 
         try {
             const response = await fetch(apiUrl("/chat_stream"), {
@@ -63,6 +68,8 @@ function ChatBox({ sourceTag }) {
             }
         } catch(error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
 
     };
@@ -82,6 +89,15 @@ function ChatBox({ sourceTag }) {
                     { messages.map((msg, index) =>
                         <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
                     ) }
+                    {
+                        loading &&
+                            <BounceLoader
+                                size={50}
+                                color="white"
+                                loading={loading}
+                                speedMultiplier="1"
+                            />
+                    }
                     <div ref={chatBottomRef} />
                 </div>
 
