@@ -1,22 +1,20 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import Button from './Button'; 
+import Button from "./Button";
 
-deacribe ("Button Component", () => {
+describe("Button Component", () => {
 
-    // button shows correct text 
-    it ("renders button with the correct text", () => {
-        const buttonText = "Compliance Text"; 
-        render(<Button>{buttonText}</Button>);
-        expect(screen.getByRole("button")).toHaveTextContent(buttonText); 
+    it("should render button with the correct text", () => {
+        const buttonText = "Compliance Text";
+        render(<Button text={buttonText} />);
+        expect(screen.getByRole("button").textContent).toBe(buttonText);
+    });
 
-    })
-
-    // calls onClick when clicked 
-    it ("calls onClick when clicked", () => {
+    it("should call onClick when clicked", () => {
         const handleClick = jest.fn();
-        render(<Button onClick={handleClick}>Click Me</Button>);
+        render(<Button onClick={handleClick} text="Click Me" />);
 
-        fireEvent.click(screen.getByRole("button")); 
+        fireEvent.click(screen.getByRole("button"));
         expect(handleClick).toHaveBeenCalledTimes(1);
     });
+
 });

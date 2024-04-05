@@ -1,37 +1,31 @@
-import {render, screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import axios from 'axios';
-import AddSourceForm from './AddSourceForm';
+import "@testing-library/jest-dom";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import axios from "axios";
 
-// Mock axios 
-jest.mock('axios');
+import AddSourceForm from "./AddSourceForm";
 
-describe ("AddSourceForm Component", () => {
+jest.mock("axios");
+jest.mock("../utils/apiAccess");
 
-    it ("should display a form with inputs, select buttons and a submit button", () => {
+describe("AddSourceForm Component", () => {
 
-        render (<AddSourceForm/>);
-        expect(screen.getByLabelText(/source url/i)).toBeInTheDocument(); // "/i": ignoreCase
+    it("should display a form with inputs, select buttons and a submit button", () => {
+        render(<AddSourceForm />);
+        expect(screen.getByLabelText(/source url/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/access control/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/refresh interval/i)).toBeInTheDocument();
-        expect(screen.getByRole('button', {name: /submit/i} )).toBeInTheDocument();
-
+        expect(screen.getByRole("button", { name: /submit/i })).toBeInTheDocument();
     });
 
-    // pressing submit button prematurely should log error in console
-    it ("checks if error is logged in console when submit fails", async() => {
-        render (<AddSourceForm/>);
+    it("should not make request when form is not filled", async () => {
+        render(<AddSourceForm />);
 
-        // mock error for API post 
-        axios.post.mockRejectedValue(new Error("API request failed"));
+        const mockAxiosPost = jest.spyOn(axios, "post").mockImplementation();
 
-        // mock console error logged 
-        const mockConsoleError = jest.spyOn(console, "error").mockImplementation();
-        
-        // user submit empty form 
-        userEvent.click(screen.getByRole('button', {name: /submit/i}));
-        await waitFor(() => expect(mockConsoleError).toHaveBeenCalledWith(expect.any(Error)));
-        
-        mockConsoleError.mockRestore(); // resore console error
+        // user submits empty form
+        userEvent.click(screen.getByRole("button", { name: /submit/i }));
+        await waitFor(() => expect(mockAxiosPost).not.toHaveBeenCalled());
     });
+
 });
