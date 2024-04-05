@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import ChatMessage from "./ChatMessage";
 
-import { apiUrl } from "../utils/apiAccess";
+import { getChatStreamResponse } from "../utils/apiAccess";
 
 import styles from "./ChatBox.module.css";
 
@@ -40,22 +40,8 @@ function ChatBox({ sourceTag }) {
         setLoading(true);
 
         try {
-            const response = await fetch(apiUrl("/chat_stream"), {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    prompt: messageContents,
-                    section: sourceTag
-                })
-            });
-            const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
-            while(true) {
-                const { value, done } = await reader.read();
-                if(done) break;
-                const message = JSON.parse(value);
+            const messageIterator = getChatStreamResponse(messageContents, sourceTag);
+            for await (const message of messageIterator) {
                 if(message.message_type === "update") {
                     addMessage({ sender: "system", contents: message.message_content });
                 } else if(message.message_type === "final_response") {
