@@ -1,17 +1,26 @@
 services:
+
   frontend:
     build: ./frontend
     ports:
       - 80:80
+    depends_on:
+      - backend
+
   backend:
     build: ./backend
-    stdin_open: true
-    tty: true
+    volumes:
+      - backend_cache:/app/cache
     environment:
       - APP_ENVIRONMENT=production
-      - LLM_GPU_LAYERS=1
+      - OLLAMA_BASE_URL=http://ollama:11434
+    depends_on:
+      - ollama
+  
+  ollama:
+    image: ollama/ollama
     volumes:
-      - chroma_db:/app/chroma_db
+      - ollama:/root/.ollama
     deploy:
       resources:
         reservations:
@@ -21,4 +30,5 @@ services:
               capabilities: [gpu]
 
 volumes:
-  chroma_db:
+  backend_cache:
+  ollama:
