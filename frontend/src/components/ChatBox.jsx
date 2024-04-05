@@ -21,7 +21,7 @@ function ChatBox({ sourceTag }) {
     };
 
     useEffect(() => {
-        if (!initialMount.current) {
+        if(!initialMount.current) {
             addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
         } else {
             initialMount.current = false;
@@ -92,18 +92,19 @@ function ChatBox({ sourceTag }) {
                     { messages.map((msg, index) =>
                         <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
                     ) }
-                    <div ref={chatBottomRef} />
-                    {loading &&
-                        <div className={styles.spinner}>
-                            <BounceLoader
-                                size={50}
-                                color="white"
-                                loading={loading}
-                                speedMultiplier="1"
-                            />
-                        </div>
-                    }
+                    <div ref={chatBottomRef} className={loading ? styles.bottomContainerLoading : ""} />
                 </div>
+
+                { loading &&
+                    <div className={styles.spinner}>
+                        <BounceLoader
+                            size="3em"
+                            color="white"
+                            loading={loading}
+                            speedMultiplier="1"
+                        />
+                    </div>
+                }
 
                 <textarea
                     name="chatInput"
