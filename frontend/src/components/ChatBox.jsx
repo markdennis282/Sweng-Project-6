@@ -21,9 +21,8 @@ function ChatBox({ sourceTag }) {
     };
 
     useEffect(() => {
-        if(!initialMount.current) {
+        if(initialMount.current) {
             addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
-        } else {
             initialMount.current = false;
         }
     }, [sourceTag]);
