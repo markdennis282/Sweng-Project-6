@@ -87,22 +87,22 @@ function ChatBox({ sourceTag }) {
     return (
         <>
             <div className={styles.chatBox}>
-                { /* <div className="sourcetag">{ sourceTag }</div> */ }
 
                 <div className={styles.messageBox}>
                     { messages.map((msg, index) =>
                         <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
                     ) }
-                    {
-                        loading &&
+                    <div ref={chatBottomRef} />
+                    {loading &&
+                        <div className={styles.spinner}>
                             <BounceLoader
                                 size={50}
                                 color="white"
                                 loading={loading}
                                 speedMultiplier="1"
                             />
+                        </div>
                     }
-                    <div ref={chatBottomRef} />
                 </div>
 
                 <textarea
