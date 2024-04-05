@@ -37,8 +37,6 @@
 
 .chatInputField:hover {
     box-shadow: 0 0 4px 4px rgba(137, 214, 255, 0.7); 
-
-
 }
 
 .sourcetag {
@@ -75,39 +73,12 @@
     border-radius: 6px;
 }
 
-/* .messageContainer {
-    text-align: left;
-    margin: 2em;
-} */
-
-/* .message p{
-    font-size: 16px;
-    text-align: justify;
+.bottomContainerLoading {
+    height: calc(3em + 1rem); /* spinner height + spinner bottom margin */
 }
 
-.message #user {
-    margin-left: 20%;
-    direction: rtl;
-    text-align: justify;
+.spinner {
+    position: absolute;
+    margin-bottom: calc(4em + 36.8px + 1rem); /* input height + input padding and border + icon bottom margin  */
+    margin-left: 0.5em;
 }
-
-.message #ai {
-    margin-right: 20%;
-} */
-
-/* .senderIcon {
-    width: 3em;
-    height: 3em;
-    border-radius: 100px;
-    background-color: white;
-    margin-bottom: 1rem;
-} */
-
-/* .senderIcon#user {
-    margin-left:96%;  
-    background-color: grey;
-}
-.senderIcon#ai {
-    margin-left:0%; 
-    background-color: blue;
-} */

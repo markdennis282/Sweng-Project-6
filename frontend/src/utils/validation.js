@@ -1,13 +1,5 @@
 export function isValidUrl(url) {
-    try {
-        const x = new URL(url);
-        if(x) {
-            console.log("valid");
-            return true;
-        }
-    } catch(error) {
-        console.log("invalid");
-        return false;
-    }
-    return false;
+    const urlRegex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
+
+    return urlRegex.test(url);
 }

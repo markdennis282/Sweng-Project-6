@@ -14,14 +14,18 @@ function ChatBox({ sourceTag }) {
     const userInputRef = useRef(null);
     const chatBottomRef = useRef(null);
     const [loading, setLoading] = useState(false);
+    const initialMount = useRef(true);
 
     const addMessage = newMessage => {
         setMessages(m => [...m, newMessage]);
     };
 
     useEffect(() => {
-        // TODO: fix the message appearing twice on page refresh
-        addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
+        if(!initialMount.current) {
+            addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
+        } else {
+            initialMount.current = false;
+        }
     }, [sourceTag]);
 
     // scrolls to the bottom of the chat box
@@ -69,23 +73,24 @@ function ChatBox({ sourceTag }) {
     return (
         <>
             <div className={styles.chatBox}>
-                { /* <div className="sourcetag">{ sourceTag }</div> */ }
 
                 <div className={styles.messageBox}>
                     { messages.map((msg, index) =>
                         <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
                     ) }
-                    {
-                        loading &&
-                            <BounceLoader
-                                size={50}
-                                color="white"
-                                loading={loading}
-                                speedMultiplier="1"
-                            />
-                    }
-                    <div ref={chatBottomRef} />
+                    <div ref={chatBottomRef} className={loading ? styles.bottomContainerLoading : ""} />
                 </div>
+
+                { loading &&
+                    <div className={styles.spinner}>
+                        <BounceLoader
+                            size="3em"
+                            color="white"
+                            loading={loading}
+                            speedMultiplier="1"
+                        />
+                    </div>
+                }
 
                 <textarea
                     name="chatInput"
