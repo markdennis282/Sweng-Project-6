@@ -14,14 +14,18 @@ function ChatBox({ sourceTag }) {
     const userInputRef = useRef(null);
     const chatBottomRef = useRef(null);
     const [loading, setLoading] = useState(false);
+    const initialMount = useRef(true);
 
     const addMessage = newMessage => {
         setMessages(m => [...m, newMessage]);
     };
 
     useEffect(() => {
-        // TODO: fix the message appearing twice on page refresh
-        addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
+        if (!initialMount.current) {
+            addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
+        } else {
+            initialMount.current = false;
+        }
     }, [sourceTag]);
 
     // scrolls to the bottom of the chat box
