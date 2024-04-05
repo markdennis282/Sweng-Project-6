@@ -14,17 +14,13 @@ function ChatBox({ sourceTag }) {
     const userInputRef = useRef(null);
     const chatBottomRef = useRef(null);
     const [loading, setLoading] = useState(false);
-    const initialMount = useRef(true);
 
     const addMessage = newMessage => {
         setMessages(m => [...m, newMessage]);
     };
 
     useEffect(() => {
-        if(initialMount.current) {
-            addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
-            initialMount.current = false;
-        }
+        addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
     }, [sourceTag]);
 
     // scrolls to the bottom of the chat box
