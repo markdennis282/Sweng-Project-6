@@ -18,6 +18,10 @@
     font-size: 16px;
     text-align: justify;
     margin-right: 20%;
+    background-color: #034072;
+    padding: 15px;
+    border-radius: 20px;
+    float: left;
 }
 .messageSystem {
     font-size: 16px;
