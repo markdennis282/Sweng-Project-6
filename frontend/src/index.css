@@ -50,8 +50,8 @@ button:hover {
   border-color: #646cff;
 } */
 
-
-@media (prefers-color-scheme: light) {
+/* changes the color scheme to light or dark mode; commented out bc the default keeps changing to dark mode making it hard to read
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -62,4 +62,4 @@ button:hover {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
