@@ -3,12 +3,16 @@ from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.chat_models import ChatOllama
 from langchain_core.output_parsers import JsonOutputParser
+from langchain_openai import ChatOpenAI
 import os
 
 from llm.retriever import retrievers_dict
 
 local_llm = "openchat"
 ollama_base_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
+
+openai_api_key = os.environ.get("OPENAI_API_KEY")
+use_openai = False if openai_api_key is None else True
 
 ### Nodes ###
 
@@ -54,7 +58,10 @@ def generate(state):
     prompt = hub.pull("rlm/rag-prompt")
 
     # LLM
-    llm = ChatOllama(base_url=ollama_base_url, model=local_llm, temperature=0)
+    if use_openai:
+        llm = ChatOpenAI(openai_api_key=openai_api_key, temperature=0)
+    else:
+        llm = ChatOllama(base_url=ollama_base_url, model=local_llm, temperature=0)
 
     # Post-processing
     def format_docs(docs):
@@ -87,7 +94,10 @@ def grade_documents(state):
     documents = state_dict["documents"]
 
     # LLM
-    llm = ChatOllama(base_url=ollama_base_url, model=local_llm, format="json", temperature=0)
+    if use_openai:
+        llm = ChatOpenAI(openai_api_key=openai_api_key, temperature=0)
+    else:
+        llm = ChatOllama(base_url=ollama_base_url, model=local_llm, format="json", temperature=0)
 
     # Prompt
     prompt = PromptTemplate(
@@ -141,7 +151,10 @@ def transform_query(state):
     documents = state_dict["documents"]
 
     # LLM
-    llm = ChatOllama(base_url=ollama_base_url, model=local_llm, temperature=0)
+    if use_openai:
+        llm = ChatOpenAI(openai_api_key=openai_api_key, temperature=0)
+    else:
+        llm = ChatOllama(base_url=ollama_base_url, model=local_llm, temperature=0)
     
     # Create a prompt template with format instructions and the query
     prompt = PromptTemplate(
@@ -230,7 +243,10 @@ def grade_generation_v_documents(state):
     generation = state_dict["generation"]
 
     # LLM
-    llm = ChatOllama(base_url=ollama_base_url, model=local_llm, format="json", temperature=0)
+    if use_openai:
+        llm = ChatOpenAI(openai_api_key=openai_api_key, temperature=0)
+    else:
+        llm = ChatOllama(base_url=ollama_base_url, model=local_llm, format="json", temperature=0)
 
     # Prompt
     prompt = PromptTemplate(
@@ -274,7 +290,10 @@ def grade_generation_v_question(state):
     documents = state_dict["documents"]
     generation = state_dict["generation"]
 
-    llm = ChatOllama(base_url=ollama_base_url, model=local_llm, format="json", temperature=0)
+    if use_openai:
+        llm = ChatOpenAI(openai_api_key=openai_api_key, temperature=0)
+    else:
+        llm = ChatOllama(base_url=ollama_base_url, model=local_llm, format="json", temperature=0)
 
     # Prompt
     prompt = PromptTemplate(

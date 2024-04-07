@@ -15,6 +15,9 @@ services:
       - APP_ENVIRONMENT=production
       - QDRANT_HOST=qdrant
       - OLLAMA_BASE_URL=http://ollama:11434
+    env_file:
+      - path: ./openai.env
+        required: false
     depends_on:
       - qdrant
       - ollama
