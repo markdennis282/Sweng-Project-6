@@ -11,24 +11,50 @@
     border: solid white; 
     
     border-radius: 20px;
-    padding: 0 3em 3em;
+    padding: 0 2em 1em;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; 
+    align-self: center;
+    width: calc(100% - 2em); /* Adjust based on parent padding */
+    padding-right: 5em;
+    padding-left: 1em;
+    padding-top: 1em;
+}
+
+.sendButton {
+    position: absolute;
+    right: 15px;
+    top: 60%; 
+    transform: translateY(-50%);
+    background-color: #004176;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer; 
+    font-size: 20px;
+    height: 3em; 
+    width: 3em; 
+    display: flex;
+    text-align: center;
+    border: solid white; 
+    align-items: center;
 }
 
 .chatInputField {
-    align-self: center;
-    width: 100%;
-    border-radius: 20px;
-    transition: 0.5s;
+    box-sizing: border-box;
+    flex-grow: 1;
     background-color: #004176;
     font-size: 16px;
-    border: solid white; 
-    text-decoration: none;
-    padding: 1em;
-    color: white; /*not working?*/
+    border: solid white;
+    padding: 1.5em;
+    color: white;
     resize: none;
     height: 4em;
-    min-height: 4em;
-    /* overflow: auto; */
+    border-radius: 20px;
 }
 
 .chatInputField::placeholder {
@@ -37,7 +63,6 @@
 
 .chatInputField:hover {
     box-shadow: 0 0 4px 4px rgba(137, 214, 255, 0.7); 
-
 
 }
 
