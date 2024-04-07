@@ -5,7 +5,7 @@ from langchain_community.chat_models import ChatOllama
 from langchain_core.output_parsers import JsonOutputParser
 import os
 
-from llm.retriever import retriever
+from llm.retriever import retrievers_dict
 
 local_llm = "openchat"
 ollama_base_url = os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
@@ -28,8 +28,10 @@ def retrieve(state):
     print("---RETRIEVE---")
     state_dict = state["keys"]
     question = state_dict["question"]
-    documents = retriever.get_relevant_documents(question)
-    return {"keys": {"documents": documents, "question": question}}
+    tags = state_dict["tags"]
+    documents = []
+    [documents.extend(retrievers_dict[tag].get_relevant_documents(question)) for tag in tags]
+    return {"keys": {"documents": documents, "question": question, "tags": tags}}
 
 
 def generate(state):
@@ -45,6 +47,7 @@ def generate(state):
     print("---GENERATE---")
     state_dict = state["keys"]
     question = state_dict["question"]
+    tags = state_dict["tags"]
     documents = state_dict["documents"]
     
     # Prompt
@@ -63,7 +66,7 @@ def generate(state):
     # Run
     generation = rag_chain.invoke({"context": documents, "question": question})
     return {
-        "keys": {"documents": documents, "question": question, "generation": generation}
+        "keys": {"documents": documents, "question": question, "generation": generation, "tags": tags}
     }
 
 def grade_documents(state):
@@ -80,6 +83,7 @@ def grade_documents(state):
     print("---CHECK RELEVANCE---")
     state_dict = state["keys"]
     question = state_dict["question"]
+    tags = state_dict["tags"]
     documents = state_dict["documents"]
 
     # LLM
@@ -117,7 +121,7 @@ def grade_documents(state):
             print("---GRADE: DOCUMENT NOT RELEVANT---")
             continue
 
-    return {"keys": {"documents": filtered_docs, "question": question}}
+    return {"keys": {"documents": filtered_docs, "question": question, "tags": tags}}
 
 def transform_query(state):
     """
@@ -133,6 +137,7 @@ def transform_query(state):
     print("---TRANSFORM QUERY---")
     state_dict = state["keys"]
     question = state_dict["question"]
+    tags = state_dict["tags"]
     documents = state_dict["documents"]
 
     # LLM
@@ -154,7 +159,7 @@ def transform_query(state):
     chain = prompt | llm | StrOutputParser()
     better_question = chain.invoke({"question": question})
 
-    return {"keys": {"documents": documents, "question": better_question}}
+    return {"keys": {"documents": documents, "question": better_question, "tags": tags}}
 
 def prepare_for_final_grade(state):
     """
@@ -170,11 +175,12 @@ def prepare_for_final_grade(state):
     print("---FINAL GRADE---")
     state_dict = state["keys"]
     question = state_dict["question"]
+    tags = state_dict["tags"]
     documents = state_dict["documents"]
     generation = state_dict["generation"]
 
     return {
-        "keys": {"documents": documents, "question": question, "generation": generation}
+        "keys": {"documents": documents, "question": question, "generation": generation, "tags": tags}
     }
 
 

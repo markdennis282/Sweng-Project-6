@@ -39,7 +39,7 @@ function ChatBox({ sourceTag }) {
         setLoading(true);
 
         try {
-            const messageIterator = getChatStreamResponse(messageContents, sourceTag);
+            const messageIterator = getChatStreamResponse(messageContents, sourceTag.toLowerCase());
             for await (const message of messageIterator) {
                 if(message.message_type === "update") {
                     addMessage({ sender: "system", contents: message.message_content });

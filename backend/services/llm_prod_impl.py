@@ -11,7 +11,7 @@ async def query_rag(query_string: str, source_tags: list[str]) -> str:
     Throws if an error occurs while generating the response.
     """
     
-    inputs = {"keys": {"question": query_string}}
+    inputs = {"keys": {"question": query_string, "tags": source_tags}}
     
     for output in compiled_workflow.stream(inputs):
         for key, value in output.items():
@@ -35,7 +35,7 @@ def query_rag_streaming_generator(query_string: str, source_tags: list[str]):
     """
     
     async def generator():
-        inputs = {"keys": {"question": query_string}}
+        inputs = {"keys": {"question": query_string, "tags": source_tags}}
 
         for output in compiled_workflow.stream(inputs):
             for key, value in output.items():
