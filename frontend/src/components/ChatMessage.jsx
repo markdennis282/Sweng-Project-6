@@ -12,10 +12,10 @@ function ChatMessage({ sender, contents, ...props }) {
             </div>
         );
     }
-    if(sender === "ai") {
+    if(sender === "ai") { 
         return (
             <div className={styles.messageContainer} {...props}>
-                <AvatarIcon size="3em" backgroundColor="#004176" iconSrc="ai-icon.svg" className={styles.aiIcon} />
+                <AvatarIcon size="3em" backgroundColor="#004176" iconSrc="Marvin.svg" className={styles.aiIcon} /> 
                 <p className={styles.messageAi}>{ contents }</p>
             </div>
         );

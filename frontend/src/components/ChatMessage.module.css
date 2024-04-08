@@ -1,6 +1,6 @@
 .messageContainer {
     text-align: left;
-    margin: 2em;
+    overflow: hidden;
 }
 
 .messageUser {
@@ -8,12 +8,20 @@
     text-align: justify;
     margin-left: 20%;
     text-align: right;
+    background-color: #034072;
+    padding: 15px;
+    border-radius: 20px;
+    float: right;
 }
 
 .messageAi {
     font-size: 16px;
     text-align: justify;
     margin-right: 20%;
+    background-color: #034072;
+    padding: 15px;
+    border-radius: 20px;
+    float: left;
 }
 .messageSystem {
     font-size: 16px;
@@ -22,11 +30,10 @@
     margin-right: 50%; */
 }
 .userIcon {
-    margin-left: calc(100% - 1.5em);
-    margin-bottom: 1rem;
+    margin-left: calc(100% - 3em);
+    margin-top: 1rem;
 }
 
 .aiIcon {
-    margin-left: -1.5em;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
