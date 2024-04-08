@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 import ChatMessage from "./ChatMessage";
+import Button from "./Button";
 import SuggestedPrompt from "./SuggestedPrompt";
 
 import { getChatStreamResponse } from "../utils/apiAccess";
@@ -29,14 +30,13 @@ function ChatBox({ sourceTag }) {
         chatBottomRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    const handleInputSubmission = async event => {
-        if(event && event.key !== "Enter") return;
+    // moved to own function
+    const sendMessage = async () => {
         const messageContents = userInputRef.current.value.trim();
-        userInputRef.current.value = "";
         if(!messageContents) return;
 
         addMessage({ sender: "user", contents: messageContents });
-
+        userInputRef.current.value = "";
         setLoading(true);
 
         try {
@@ -60,6 +60,11 @@ function ChatBox({ sourceTag }) {
 
     };
 
+    const handleInputSubmission = event => {
+        if(event.key !== "Enter") return;
+        sendMessage();
+    };
+
     const handleInputClear = event => {
         if(event.key !== "Enter") return;
         userInputRef.current.value = "";
@@ -67,7 +72,7 @@ function ChatBox({ sourceTag }) {
 
     const chooseSuggestion = suggestionText => {
         userInputRef.current.value = suggestionText;
-        handleInputSubmission();
+        sendMessage();
     };
 
 
@@ -104,15 +109,19 @@ function ChatBox({ sourceTag }) {
                     </div>
                 }
 
-                <textarea
-                    name="chatInput"
-                    rows="6"
-                    placeholder="Type your query and hit enter..."
-                    className={styles.chatInputField}
-                    onKeyDown={handleInputSubmission}
-                    onKeyUp={handleInputClear}
-                    ref={userInputRef}
-                />
+                <div className={styles.inputContainer} >
+                    <textarea
+                        name="chatInput"
+                        rows="1"
+                        placeholder="Type your query and hit enter..."
+                        className={styles.chatInputField}
+                        onKeyDown={handleInputSubmission}
+                        onKeyUp={handleInputClear}
+                        ref={userInputRef}
+                    />
+                    <Button text="↑" onClick={sendMessage} className={styles.sendButton} />
+                </div>
+
             </div>
         </>
     );
