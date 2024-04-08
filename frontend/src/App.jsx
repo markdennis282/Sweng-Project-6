@@ -1,9 +1,12 @@
-// App.jsx
-import NavBar from "./components/NavBar.jsx";
-import Sidebar from "./components/SideBar.jsx";
-import ChatBox from "./components/ChatBox.jsx";
-import "./App.css";
 import { useState } from "react";
+
+import AddSourceForm from "./components/AddSourceForm.jsx";
+import ChatBox from "./components/ChatBox.jsx";
+import Layout from "./components/Layout.jsx";
+import NavBar from "./components/NavBar.jsx";
+// import LogoScreen from "./components/LogoScreen.jsx";
+
+import "./App.css";
 
 function App() {
 
@@ -16,12 +19,12 @@ function App() {
 
     return (
         <>
-            <div className="bg_gradient">
+            <Layout menuComponent={<AddSourceForm />}>
                 <NavBar items={sourceTags} onChange={handleSourceChange} />
-                <Sidebar />
                 <ChatBox sourceTag={selectedSourceTag} />
-            </div>
+            </Layout>
         </>
+        // <LogoScreen /> /* errors happening with images not appearing when making ternary to change screen*/
     );
 }
 

@@ -1,4 +1,12 @@
 .button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: border-color 0.25s;
     background-color: #065FA8;
     /* height: 65%;
     padding: 10px 20px; */
@@ -11,7 +19,23 @@
     transition: 0.2s;
 }
 
+/* button {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+button:hover {
+    border-color: #646cff;
+} */
+
 .button:hover {
+    border-color: #646cff;
     box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
     border-color: rgb(252, 243, 169);
     color: rgb(252, 243, 169);

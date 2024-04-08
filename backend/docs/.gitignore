@@ -1,0 +1,4 @@
+# Temporary implementation:
+# Put all the documents to be added to the vector store in this directory.
+
+*.md

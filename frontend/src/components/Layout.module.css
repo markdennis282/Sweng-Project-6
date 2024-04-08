@@ -1,0 +1,67 @@
+.outerContainer {
+    width: 100vw;
+    height: 100vh;
+}
+
+.menu {
+    position: absolute;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #012A4E;
+    transition: left 0.3s ease;
+}
+  
+.menuOpen {
+    left: 0;
+}
+
+.menuButton {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transition: transform 0.3s ease;
+    transform: translate(0, -50%);
+    transition: 0.25s;
+    z-index: 9999;
+    height: 50px;
+    padding: 0 3px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+}
+
+.menuButton:hover {
+    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.67); 
+    border-radius: 10px;
+}
+.menuButtonTransformed {
+    transform: translate(calc(250px - 100%), -50%);
+}
+
+.menuButtonIcon {
+    max-width: 100%;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.menuButtonIconFlipped {
+    transform: scaleX(-1);
+}
+  
+.mainContent {
+    margin-left: 0;
+    padding: 20px 40px;
+    transition: margin-left 0.3s ease;
+}
+
+.mainContentWithMenuOpen {
+    margin-left: 250px;
+}
+
+.innerContainer {
+    max-width: 1300px;
+    margin: auto;
+}

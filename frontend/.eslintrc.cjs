@@ -6,16 +6,17 @@ module.exports = {
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
         "plugin:react-hooks/recommended",
+        "plugin:jest/recommended"
     ],
     ignorePatterns: ["dist", ".eslintrc.cjs"],
     parserOptions: { ecmaVersion: "latest", sourceType: "module" },
     settings: { react: { version: "18.2" } },
-    plugins: ["react-refresh", "@stylistic"],
+    plugins: ["react-refresh", "@stylistic", "jest"],
     rules: {
         "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
         "no-unused-vars": "warn",
+        "no-constant-condition": ["error", { "checkLoops": false }],
 
-        "no-await-in-loop": "error",
         "no-constant-binary-expression": "error",
         "no-constructor-return": "error",
         "no-duplicate-imports": "error",
@@ -44,7 +45,6 @@ module.exports = {
         "grouped-accessor-pairs": "error",
         "guard-for-in": "warn",
         "max-classes-per-file": ["error", 1],
-        "multiline-comment-style": ["warn", "starred-block"],
         "no-alert": "error",
         "no-array-constructor": "error",
         "no-bitwise": "warn",
@@ -178,7 +178,11 @@ module.exports = {
         "@stylistic/semi-spacing": "error",
         "@stylistic/semi-style": ["error", "last"],
         "@stylistic/space-before-blocks": "error",
-        "@stylistic/space-before-function-paren": ["error", "never"],
+        "@stylistic/space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
         "@stylistic/space-in-parens": ["error", "never"],
         "@stylistic/space-infix-ops": "error",
         "@stylistic/space-unary-ops": "error",

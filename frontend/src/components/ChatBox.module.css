@@ -1,76 +1,84 @@
 .chatBox {
-    display: flex;
-    height: 60vh;
-    width: 80vw;
+    display: flex; 
+    flex-direction: column;
+    margin-top: 60px;
+    justify-content: flex-end;
+    position: relative;
+    height: 70vh;
+    background-image: url("../assets/millennium_bg.png");
+    background-size: cover;
     background-color: rgb(20, 31, 62);
     border: solid white; 
-    margin-top: 20px;
+    
     border-radius: 20px;
-    padding: 3em;
-    align-items:flex-end;
-    flex-direction:column-reverse;
-    background-size: cover;
+    padding: 0 3em 3em;
 }
 
 .chatInputField {
-    width: inherit;
+    align-self: center;
+    width: 100%;
     border-radius: 20px;
+    transition: 0.5s;
     background-color: #004176;
     font-size: 16px;
     border: solid white; 
     text-decoration: none;
     padding: 1em;
     color: white; /*not working?*/
-    align-self: center;
     resize: none;
     height: 4em;
     min-height: 4em;
     /* overflow: auto; */
 }
 
+.chatInputField::placeholder {
+    color: rgb(196, 196, 196);
+}
+
+.chatInputField:hover {
+    box-shadow: 0 0 4px 4px rgba(137, 214, 255, 0.7); 
+}
+
+.sourcetag {
+    position: absolute;
+    top: 50px;
+    bottom: 10px;
+}
+
 .messageBox {
-    display: flex;
-    align-items: normal;
     flex-direction: column;
+    align-items: flex-end;
     width: inherit;
-    overflow:scroll;
-    margin-bottom: 20px;
-
+    /* overflow:scroll; */
+    overflow-x: hidden;
+    /* margin-bottom: 20px; */
 }
 
-/* .messageContainer {
-    text-align: left;
-    margin: 2em;
-} */
-
-/* .message p{
-    font-size: 16px;
-    text-align: justify;
+.messageBox::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+  
+.messageBox::-webkit-scrollbar-button {
+    display: none;
 }
 
-.message #user {
-    margin-left: 20%;
-    direction: rtl;
-    text-align: justify;
+.messageBox::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 6px;
 }
 
-.message #ai {
-    margin-right: 20%;
-} */
-
-/* .senderIcon {
-    width: 3em;
-    height: 3em;
-    border-radius: 100px;
-    background-color: white;
-    margin-bottom: 1rem;
-} */
-
-/* .senderIcon#user {
-    margin-left:96%;  
-    background-color: grey;
+.messageBox::-webkit-scrollbar-thumb {
+    background-color: rgba(240, 248, 255, 0.33);
+    border-radius: 6px;
 }
-.senderIcon#ai {
-    margin-left:0%; 
-    background-color: blue;
-} */
+
+.bottomContainerLoading {
+    height: calc(3em + 1rem); /* spinner height + spinner bottom margin */
+}
+
+.spinner {
+    position: absolute;
+    margin-bottom: calc(4em + 36.8px + 1rem); /* input height + input padding and border + icon bottom margin  */
+    margin-left: 0.5em;
+}

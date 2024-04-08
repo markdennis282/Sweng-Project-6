@@ -1,0 +1,9 @@
+{
+    "moduleNameMapper": {
+        "\\.(css|less)$": "<rootDir>/mock.js"
+    },
+    "transform": {
+        "^.+\\.(js|jsx)$": "babel-jest"
+    },
+    "testEnvironment": "jsdom"
+}
