@@ -1,6 +1,4 @@
-/* eslint-disable @stylistic/max-len */
 import axios from "axios";
-
 import { apiUrl } from "../utils/apiAccess";
 import { isValidUrl } from "../utils/validation";
 
@@ -22,8 +20,16 @@ function AddSourceForm() {
             // alert("invalid");
         } else {
             try {
-                console.log(formDataObject);
-                await axios.post(apiUrl("/source"), formDataObject);
+                const configObject = {
+                    type: "web",
+                    config: {
+                        url: formDataObject.url
+                    }
+                };
+
+                await axios.post(`http://localhost:5000/config", ${configObject}`);
+                const seconds = parseInt(formDataObject.refresh_interval) * 60; 
+                await axios.post(`http://localhost:5000/schedule?seconds=${seconds}`);
             } catch(error) {
                 console.error(error);
             }
