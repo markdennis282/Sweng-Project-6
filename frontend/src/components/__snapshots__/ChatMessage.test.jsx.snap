@@ -13,7 +13,7 @@ exports[`Snapshot tests Should render correctly (ai message) 1`] = `
   >
     <div>
       <img
-        src="ai-icon.svg"
+        src="Marvin.svg"
       />
     </div>
   </div>

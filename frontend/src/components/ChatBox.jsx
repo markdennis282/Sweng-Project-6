@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 
 import ChatMessage from "./ChatMessage";
 import Button from "./Button";
+import SuggestedPrompt from "./SuggestedPrompt";
 
-import { apiUrl } from "../utils/apiAccess";
+import { getChatStreamResponse } from "../utils/apiAccess";
 
 import styles from "./ChatBox.module.css";
 
@@ -21,7 +22,6 @@ function ChatBox({ sourceTag }) {
     };
 
     useEffect(() => {
-        // TODO: fix the message appearing twice on page refresh
         addMessage({ sender: "system", contents: `Category changed to ${sourceTag}` });
     }, [sourceTag]);
 
@@ -40,22 +40,8 @@ function ChatBox({ sourceTag }) {
         setLoading(true);
 
         try {
-            const response = await fetch(apiUrl("/chat_stream"), {
-                method: "POST",
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    prompt: messageContents,
-                    section: sourceTag
-                })
-            });
-            const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
-            while(true) {
-                const { value, done } = await reader.read();
-                if(done) break;
-                const message = JSON.parse(value);
+            const messageIterator = getChatStreamResponse(messageContents, sourceTag.toLowerCase());
+            for await (const message of messageIterator) {
                 if(message.message_type === "update") {
                     addMessage({ sender: "system", contents: message.message_content });
                 } else if(message.message_type === "final_response") {
@@ -135,27 +121,44 @@ function ChatBox({ sourceTag }) {
         userInputRef.current.value = "";
     };
 
+    const chooseSuggestion = suggestionText => {
+        userInputRef.current.value = suggestionText;
+        handleInputSubmission();
+    };
+
 
     return (
         <>
             <div className={styles.chatBox}>
-                { /* <div className="sourcetag">{ sourceTag }</div> */ }
 
                 <div className={styles.messageBox}>
+                    <div className={styles.suggestionContainer}>
+                        <div className={styles.suggestion_col}>
+                            <SuggestedPrompt contents="What is an Amazon Alexa for business?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            <SuggestedPrompt contents="Where am I?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                        </div>
+                        <div className={styles.suggestion_col}>
+                            <SuggestedPrompt contents="What time is it?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            <SuggestedPrompt contents="Who are you?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                        </div>
+                    </div>
+
                     { messages.map((msg, index) =>
                         <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
                     ) }
-                    {
-                        loading &&
-                            <BounceLoader
-                                size={50}
-                                color="white"
-                                loading={loading}
-                                speedMultiplier="1"
-                            />
-                    }
-                    <div ref={chatBottomRef} />
-                </div >
+                    <div ref={chatBottomRef} className={loading ? styles.bottomContainerLoading : ""} />
+                </div>
+
+                { loading &&
+                    <div className={styles.spinner}>
+                        <BounceLoader
+                            size="3em"
+                            color="white"
+                            loading={loading}
+                            speedMultiplier="1"
+                        />
+                    </div>
+                }
 
                 <div className={styles.inputContainer} >
                     <textarea

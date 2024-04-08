@@ -45,7 +45,6 @@ module.exports = {
         "grouped-accessor-pairs": "error",
         "guard-for-in": "warn",
         "max-classes-per-file": ["error", 1],
-        "multiline-comment-style": ["warn", "starred-block"],
         "no-alert": "error",
         "no-array-constructor": "error",
         "no-bitwise": "warn",
@@ -179,7 +178,11 @@ module.exports = {
         "@stylistic/semi-spacing": "error",
         "@stylistic/semi-style": ["error", "last"],
         "@stylistic/space-before-blocks": "error",
-        "@stylistic/space-before-function-paren": ["error", "never"],
+        "@stylistic/space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
         "@stylistic/space-in-parens": ["error", "never"],
         "@stylistic/space-infix-ops": "error",
         "@stylistic/space-unary-ops": "error",

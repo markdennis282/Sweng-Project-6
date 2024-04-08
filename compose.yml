@@ -13,12 +13,27 @@ services:
       - backend_cache:/app/cache
     environment:
       - APP_ENVIRONMENT=production
+      - QDRANT_HOST=qdrant
       - OLLAMA_BASE_URL=http://ollama:11434
+    env_file:
+      - path: ./openai.env
+        required: false
     depends_on:
+      - qdrant
       - ollama
   
+  qdrant:
+    image: qdrant/qdrant
+    restart: always
+    volumes:
+      - qdrant:/qdrant/storage
+    configs:
+      - source: qdrant_config
+        target: /qdrant/config/production.yaml
+
   ollama:
     image: ollama/ollama
+    restart: always
     volumes:
       - ollama:/root/.ollama
     deploy:
@@ -32,3 +47,9 @@ services:
 volumes:
   backend_cache:
   ollama:
+  qdrant:
+
+configs:
+  qdrant_config:
+    content: |
+      telemetry_disabled: true
