@@ -1,0 +1,18 @@
+
+.suggestionButton {
+    font-size: 18px;
+    padding: 20px;
+    width: 98%;
+    background-color: #012A4E;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: .4em;
+
+}
+
+.suggestionButton:hover {
+    border-color: #646cff;
+    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
+    border-color: rgb(252, 243, 169);
+    color: rgb(252, 243, 169);
+}

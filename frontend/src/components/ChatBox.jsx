@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 import ChatMessage from "./ChatMessage";
+import SuggestedPrompt from "./SuggestedPrompt";
 
 import { getChatStreamResponse } from "../utils/apiAccess";
 
@@ -29,7 +30,7 @@ function ChatBox({ sourceTag }) {
     }, [messages]);
 
     const handleInputSubmission = async event => {
-        if(event.key !== "Enter") return;
+        if(event && event.key !== "Enter") return;
         const messageContents = userInputRef.current.value.trim();
         userInputRef.current.value = "";
         if(!messageContents) return;
@@ -64,12 +65,28 @@ function ChatBox({ sourceTag }) {
         userInputRef.current.value = "";
     };
 
+    const chooseSuggestion = suggestionText => {
+        userInputRef.current.value = suggestionText;
+        handleInputSubmission();
+    };
+
 
     return (
         <>
             <div className={styles.chatBox}>
 
                 <div className={styles.messageBox}>
+                    <div className={styles.suggestionContainer}>
+                        <div className={styles.suggestion_col}>
+                            <SuggestedPrompt contents="What is an Amazon Alexa for business?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            <SuggestedPrompt contents="Where am I?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                        </div>
+                        <div className={styles.suggestion_col}>
+                            <SuggestedPrompt contents="What time is it?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            <SuggestedPrompt contents="Who are you?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                        </div>
+                    </div>
+
                     { messages.map((msg, index) =>
                         <ChatMessage sender={msg.sender} contents={msg.contents} key={index} />
                     ) }
