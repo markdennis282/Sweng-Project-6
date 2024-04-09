@@ -50,7 +50,18 @@
 
 }
 
+.homeButton {
+    font-size: 95px;
+    font-weight: 550;
+    font-family: 'Times New Roman', Times, serif ;
+    cursor: pointer;
+    transition: transform .5s;
+}
 
+.homeButton:hover{
+    transform: scale(1.15);
+    fill: transparent;
+}
 
 /* .openButton {
     height: 50px;

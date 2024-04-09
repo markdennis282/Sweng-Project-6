@@ -5,9 +5,12 @@ import { apiUrl } from "../utils/apiAccess";
 import { isValidUrl } from "../utils/validation";
 
 import styles from "./AddSourceForm.module.css";
+import PropTypes from "prop-types";
 
-function AddSourceForm() {
-
+function AddSourceForm({ onMenuClick }) {
+    const handleMenuClick = () => {
+        onMenuClick();
+    };
     const handleSubmit = async event => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -53,8 +56,13 @@ function AddSourceForm() {
                 </select> <br />
                 <button type="submit" className={styles.submitButton}>Submit</button>
             </form>
+            <p className={styles.homeButton} onClick={handleMenuClick}>m</p>
         </>
     );
 }
+
+AddSourceForm.propTypes = {
+    onMenuClick: PropTypes.func.isRequired
+};
 
 export default AddSourceForm;

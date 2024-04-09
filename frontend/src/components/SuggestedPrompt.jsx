@@ -5,7 +5,6 @@ import styles from "./SuggestedPrompt.module.css";
 function SuggestedPrompt({ contents, onClick, ...props }) {
     const handleClick = () => {
         onClick(contents);
-        // You can use this value as needed, such as passing it to a function or component
     };
     return (
         <div className={styles.suggestionContainer} {...props}>
