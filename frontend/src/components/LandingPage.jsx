@@ -29,7 +29,12 @@ function LandingPage({ onButtonClick }) {
                     <text x="140px" y="80%" fill="white" onClick={handleClick}>marvin.</text>
                 </svg>
             </div>
-            <div className={styles.aboutText}> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere illo minus culpa mollitia unde commodi inventore voluptatem obcaecati molestias, rerum molestiae neque sapiente nesciunt odio beatae iure non, sequi deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita quis error deleniti itaque voluptatum possimus qui aperiam perferendis alias nesciunt ea doloremque accusantium doloribus animi illum quasi quaerat, libero ut?Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, qui! Temporibus aspernatur quos mollitia molestias quidem obcaecati. Eaque accusantium fugit voluptate culpa, doloribus est molestias aut ea dolore maxime pariatur!</div>
+            <div className={styles.aboutText}>
+                <p>Meet Marvin!</p>
+                <p>Don't have time to read up on the lastest updates of your required documents?</p> 
+                <p>Ask Marvin!</p>
+                <p>Marvin allows you to stay up-to-date on the latest information for your specific department and also add your own sources to query.</p> 
+            </div>
             <div className={styles.aboutTeam}>
                 <div className={styles.teamHeader}> our team</div>
                 <div className={styles.gallery}>
