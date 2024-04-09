@@ -10,6 +10,7 @@ import audrey from "../assets/headshots/audrey.jpeg";
 import nancy from "../assets/headshots/nancy.jpeg";
 import inam from "../assets/headshots/inam.jpeg";
 import mark_d from "../assets/headshots/mark_d.jpeg";
+import mark_h from "../assets/headshots/mark_h.jpeg";
 import creagh from "../assets/headshots/creagh.jpeg";
 import ruslan from "../assets/headshots/ruslan.jpeg";
 import pierce from "../assets/headshots/pierce.jpeg";
@@ -35,7 +36,7 @@ function LandingPage({ onButtonClick }) {
                         <Headshot info={["Creagh Duggan", "3rd Year", "Crawler"]} image={creagh} />
                         <Headshot info={["Michal Bronicki", "3rd Year", "Backend"]} image={adel} />
                         <Headshot info={["Dario Cipani", "3rd Year", "Frontend"]} image={adel} />
-                        <Headshot info={["Mark Healy", "3rd Year", "LLM"]} image={adel} />
+                        <Headshot info={["Mark Healy", "3rd Year", "LLM"]} image={mark_h} />
                     </div>
                     <div>
                         <Headshot info={["Adel Shaaban", "2nd Year", "LLM"]} image={adel} />
