@@ -33,10 +33,8 @@ def run_crawler_on(type, config):
 
         if data is not None:
             print("Data extracted successfully, storing in the database.")
-            db_connector = DatabaseConnector(db_type='sqlite', db_name='documents.db')
-            db_connector.connect()
+            db_connector = DatabaseConnector()
             db_connector.store_document(data)
-            db_connector.disconnect()
             print(data)
             print("Data stored successfully.")
     except Exception as e:
