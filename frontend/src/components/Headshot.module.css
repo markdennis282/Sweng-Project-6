@@ -5,41 +5,56 @@
 
 
 .headshot {
-    background: url(https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-    background-size: cover;
-    background-position: center center;
     height: 150px;
     width: 150px;
     margin: 20px;
+    position: relative;
     overflow: hidden;
-
-
-    animation: bubbleAnim 5s ease-in-out infinite;
-    transition: all 1s ease-in-out;
+    /* animation: bubbleAnim 5s ease-in-out infinite;
+    transition: all 1s ease-in-out; */
     border-radius: 50%;
+}
+img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    top: 0;
+    left: 0;
 }
 
 .info{
     width: 100%;
-    height: 100%;
+    height: 0;
+    top: 0;
+    left: 0;
     opacity: 0;
     background: white;
-    position: relative;
-    transition: opacity 0.5s;
+    position: absolute;
+    transition: opacity 0.5s, height .65s;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    z-index: 50;
 
 }
+.info h1{
+    font-weight: 550;
+    font-size: 18px;
+    color: black;
+    margin: 2px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    font-family: nimbus-sans, sans-serif;
 
+}
 .info p{
         font-weight: 550;
-        font-size: 22px;
+        font-size: 14px;
         color: black;
         margin: 2px;
-        z-index: 10;
         opacity: 0;
         transition: opacity 0.5s;
         font-family: nimbus-sans, sans-serif;
@@ -48,10 +63,14 @@
 
 .headshot:hover .info{
     opacity: 1;
+    height: 100%;
     cursor:default;
 }
 
 .headshot:hover .info p{
+    opacity: 1;
+}
+.headshot:hover .info h1{
     opacity: 1;
 }
 

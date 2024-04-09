@@ -4,6 +4,14 @@ import PropTypes from "prop-types";
 
 import styles from "./LandingPage.module.css";
 import Headshot from "./Headshot";
+
+import adel from "../assets/headshots/adel.jpeg";
+import audrey from "../assets/headshots/audrey.jpeg";
+import nancy from "../assets/headshots/nancy.jpeg";
+import inam from "../assets/headshots/inam.jpeg";
+import mark_d from "../assets/headshots/mark_d.jpeg";
+import creagh from "../assets/headshots/creagh.jpeg";
+
 function LandingPage({ onButtonClick }) {
     const handleClick = () => {
         onButtonClick();
@@ -21,19 +29,19 @@ function LandingPage({ onButtonClick }) {
                 <div className={styles.teamHeader}> our team</div>
                 <div className={styles.gallery}>
                     <div>
-                        <Headshot info={["3rd Year", "dog"]} />
-                        <Headshot info={["3rd Year", "dog"]} />
-                        <Headshot info={["3rd Year", "dog"]} />
-                        <Headshot info={["3rd Year", "dog"]} />
-                        <Headshot info={["3rd Year", "dog"]} />
+                        <Headshot info={["Mark Dennis", "3rd Year", "Crawler"]} image={mark_d} />
+                        <Headshot info={["Creagh Duggan", "3rd Year", "Crawler"]} image={creagh} />
+                        <Headshot info={["Michal Bronicki", "3rd Year", "Backend"]} image={adel} />
+                        <Headshot info={["Dario Cipani", "3rd Year", "Frontend"]} image={adel} />
+                        <Headshot info={["Mark Healy", "3rd Year", "LLM"]} image={adel} />
                     </div>
                     <div>
-                        <Headshot info={["2nd Year", "dog", "cat"]} />
-                        <Headshot info={["2nd Year", "dog"]} />
-                        <Headshot info={["2nd Year", "dog"]} />
-                        <Headshot info={["2nd Year", "dog"]} />
-                        <Headshot info={["2nd Year", "dog"]} />
-                        <Headshot info={["2nd Year", "dog"]} />
+                        <Headshot info={["Adel Shaaban", "2nd Year", "LLM"]} image={adel} />
+                        <Headshot info={["Nancy Heppe", "2nd Year", "Backend"]} image={nancy} />
+                        <Headshot info={["Audrey Del Rosario", "2nd Year", "Frontend"]} image={audrey} />
+                        <Headshot info={["Inam Syed", "2nd Year", "Frontend"]} image={inam} />
+                        <Headshot info={["Ruslan Kirniev", "2nd Year", "LLM"]} image={adel} />
+                        <Headshot info={["Pierce Buckley", "2nd Year", "Frontend"]} image={adel} />
                     </div>
                 </div>
 
