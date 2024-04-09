@@ -24,7 +24,7 @@
     transition: transform 0.3s ease;
     transform: translate(0, -50%);
     transition: 0.25s;
-    z-index: 9999;
+    z-index: 100;
     height: 50px;
     padding: 0 3px;
     background-color: transparent;
@@ -52,8 +52,10 @@
 }
   
 .mainContent {
-    margin-left: 0;
+    box-sizing: border-box;
+    height: 100%;
     padding: 20px 40px;
+    margin-left: 0;
     transition: margin-left 0.3s ease;
 }
 
@@ -62,6 +64,8 @@
 }
 
 .innerContainer {
+    height: 100%;
     max-width: 1300px;
     margin: auto;
+    overflow-y: hidden;
 }
