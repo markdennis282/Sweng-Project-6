@@ -14,6 +14,8 @@ import mark_h from "../assets/headshots/mark_h.jpeg";
 import creagh from "../assets/headshots/creagh.jpeg";
 import ruslan from "../assets/headshots/ruslan.jpeg";
 import pierce from "../assets/headshots/pierce.jpeg";
+import dario from "../assets/headshots/dario.jpeg";
+import michal from "../assets/headshots/michal.jpeg";
 
 function LandingPage({ onButtonClick }) {
     const handleClick = () => {
@@ -32,19 +34,19 @@ function LandingPage({ onButtonClick }) {
                 <div className={styles.teamHeader}> our team</div>
                 <div className={styles.gallery}>
                     <div>
-                        <Headshot info={["Mark Dennis", "3rd Year", "Crawler"]} image={mark_d} />
-                        <Headshot info={["Creagh Duggan", "3rd Year", "Crawler"]} image={creagh} />
-                        <Headshot info={["Michal Bronicki", "3rd Year", "Backend"]} image={adel} />
-                        <Headshot info={["Dario Cipani", "3rd Year", "Frontend"]} image={adel} />
-                        <Headshot info={["Mark Healy", "3rd Year", "LLM"]} image={mark_h} />
+                        <Headshot info={["Michal Bronicki", "3rd Year", "Backend Team"]} image={michal} />
+                        <Headshot info={["Dario Cipani", "3rd Year", "Frontend Team"]} image={dario} />
+                        <Headshot info={["Mark Dennis", "3rd Year", "Data Crawling Team"]} image={mark_d} />
+                        <Headshot info={["Creagh Duggan", "3rd Year", "Data Crawling Team"]} image={creagh} />
+                        <Headshot info={["Mark Healy", "3rd Year", "LLM Team"]} image={mark_h} />
                     </div>
                     <div>
-                        <Headshot info={["Adel Shaaban", "2nd Year", "LLM"]} image={adel} />
-                        <Headshot info={["Nancy Heppe", "2nd Year", "Backend"]} image={nancy} />
-                        <Headshot info={["Audrey Del Rosario", "2nd Year", "Frontend"]} image={audrey} />
-                        <Headshot info={["Inam Syed", "2nd Year", "Frontend"]} image={inam} />
-                        <Headshot info={["Ruslan Kirniev", "2nd Year", "LLM"]} image={ruslan} />
-                        <Headshot info={["Pierce Buckley", "2nd Year", "Frontend"]} image={pierce} />
+                        <Headshot info={["Adel Shaaban", "2nd Year", "LLM Team"]} image={adel} />
+                        <Headshot info={["Nancy Heppe", "2nd Year", "Backend Team"]} image={nancy} />
+                        <Headshot info={["Audrey Del Rosario", "2nd Year", "Frontend Team"]} image={audrey} />
+                        <Headshot info={["Pierce Buckley", "2nd Year", "Frontend Team"]} image={pierce} />
+                        <Headshot info={["Ruslan Kirniev", "2nd Year", "LLM Team"]} image={ruslan} />
+                        <Headshot info={["Inam Syed", "2nd Year", "Frontend Team"]} image={inam} />
                     </div>
                 </div>
 
