@@ -20,10 +20,10 @@
 }
 
 .teamHeader{
-    margin-left: 40px;
-    text-align: left;
+    margin-right: 40px;
+    text-align: right;
     font-family: nimbus-sans, sans-serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 700;
     
 }

@@ -10,8 +10,6 @@
     margin: 20px;
     position: relative;
     overflow: hidden;
-    /* animation: bubbleAnim 5s ease-in-out infinite;
-    transition: all 1s ease-in-out; */
     border-radius: 50%;
 }
 img {
@@ -28,41 +26,37 @@ img {
     height: 0;
     top: 0;
     left: 0;
-    opacity: 0;
-    background: white;
+    background: #4585e6;
     position: absolute;
-    transition: opacity 0.5s, height .65s;
+    transition:  height .65s;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    z-index: 50;
+    opacity: .9;
 
 }
 .info h1{
     font-weight: 550;
     font-size: 18px;
-    color: black;
+    color: white;
     margin: 2px;
     opacity: 0;
-    transition: opacity 0.5s;
-    font-family: nimbus-sans, sans-serif;
+    font-family: 'Prata', serif ;
 
 }
 .info p{
-        font-weight: 550;
+        font-weight: 500;
         font-size: 14px;
-        color: black;
+        color: white;
         margin: 2px;
         opacity: 0;
-        transition: opacity 0.5s;
         font-family: nimbus-sans, sans-serif;
     
 }
 
 .headshot:hover .info{
-    opacity: 1;
     height: 100%;
     cursor:default;
 }
@@ -74,15 +68,3 @@ img {
     opacity: 1;
 }
 
-
-@keyframes bubbleAnim {
-    0% {
-        border-radius: 60% 40% 30% 70%/60% 30% 70% 40% ;
-    }
-    50% {
-        border-radius: 30% 60% 70% 40%/50% 60% 30% 60% ;
-    }
-    100% {
-        border-radius: 60% 40% 30% 70%/60% 30% 70% 40% ;
-    }
-}
