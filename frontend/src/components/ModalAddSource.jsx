@@ -1,12 +1,17 @@
 /* eslint-disable @stylistic/max-len */
 import axios from "axios";
+import PropTypes from "prop-types";
 
+import Button from "./Button";
+import Modal from "./Modal";
 import { apiUrl } from "../utils/apiAccess";
 import { isValidUrl } from "../utils/validation";
 
-import styles from "./AddSourceForm.module.css";
+import styles from "./ModalAddSource.module.css";
 
-function AddSourceForm() {
+function ModalAddSource({ onCancel, onSubmit }) {
+
+    const handleCancel = onCancel ?? (() => {});
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -24,6 +29,7 @@ function AddSourceForm() {
             try {
                 console.log(formDataObject);
                 await axios.post(apiUrl("/source"), formDataObject);
+                if(onSubmit) onSubmit();
             } catch(error) {
                 console.error(error);
             }
@@ -31,9 +37,9 @@ function AddSourceForm() {
     };
 
     return (
-        <>
+        <Modal>
             <h1 className={styles.header}>Add a new source</h1>
-            <form onSubmit={handleSubmit}>
+            <form id="addSourceForm" onSubmit={handleSubmit}>
                 <label htmlFor="url">Source URL</label> <br />
                 <input className={styles.formInput} type="text" name="url" id="url" required placeholder="e.g. www.amazon/gdpr" /> <br />
                 <label htmlFor="accessControl">Access Control</label> <br />
@@ -50,11 +56,19 @@ function AddSourceForm() {
                     <option value="5">5min</option>
                     <option value="30">30min</option>
                     <option value="60">1hr</option>
-                </select> <br />
-                <button type="submit" className={styles.submitButton}>Submit</button>
+                </select>
             </form>
-        </>
+            <div className={styles.buttonContainer}>
+                <Button text="Cancel" onClick={handleCancel} />
+                <Button text="Save" type="submit" form="addSourceForm" className={styles.submitButton} />
+            </div>
+        </Modal>
     );
 }
 
-export default AddSourceForm;
+ModalAddSource.propTypes = {
+    onCancel: PropTypes.func,
+    onSubmit: PropTypes.func
+};
+
+export default ModalAddSource;

@@ -1,15 +1,15 @@
 .chatBox {
     display: flex; 
     flex-direction: column;
-    margin-top: 60px;
+    margin-top: 20px;
     justify-content: flex-end;
     position: relative;
-    height: 70vh;
+    box-sizing: border-box;
+    height: calc(100% - 30px - 5em); /* 100% - margin - navbar height */
     background-image: url("../assets/millennium_bg.png");
     background-size: cover;
     background-color: rgb(20, 31, 62);
     border: solid white; 
-    
     border-radius: 20px;
     padding: 0 3em 3em;
 }

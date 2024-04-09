@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.heading {
+    margin: 15px 0;
+}
+
+.menu {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.menu button:not(:first-child) {
+    margin-left: 50px;
+}
