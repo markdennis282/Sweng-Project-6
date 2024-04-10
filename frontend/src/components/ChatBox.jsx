@@ -16,6 +16,8 @@ function ChatBox({ sourceTag }) {
     const userInputRef = useRef(null);
     const chatBottomRef = useRef(null);
     const [loading, setLoading] = useState(false);
+    const [currentUpdate, setCurrentUpdate] = useState("");
+
 
     const addMessage = newMessage => {
         setMessages(m => [...m, newMessage]);
@@ -43,7 +45,7 @@ function ChatBox({ sourceTag }) {
             const messageIterator = getChatStreamResponse(messageContents, sourceTag.toLowerCase());
             for await (const message of messageIterator) {
                 if(message.message_type === "update") {
-                    addMessage({ sender: "system", contents: message.message_content });
+                    setCurrentUpdate(message.message_content);
                 } else if(message.message_type === "final_response") {
                     addMessage({ sender: "ai", contents: message.message_content });
                 } else if(message.message_type === "error") {
@@ -106,6 +108,7 @@ function ChatBox({ sourceTag }) {
                             loading={loading}
                             speedMultiplier="1"
                         />
+                        <div>{ currentUpdate }</div>
                     </div>
                 }
 

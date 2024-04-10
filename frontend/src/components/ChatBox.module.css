@@ -106,6 +106,7 @@
 
 .spinner {
     position: absolute;
+    display: flex;
     margin-bottom: calc(4em + 36.8px + 1rem); /* input height + input padding and border + icon bottom margin  */
     margin-left: 0.5em;
 }
