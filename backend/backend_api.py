@@ -6,7 +6,7 @@ from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
 from services.llm import query_rag, query_rag_streaming_generator
-from services.source_management import add_source, refresh_all_sources
+from services.source_management import add_source, refresh_all_sources, get_sources
 from utils import is_production_mode
 
 class Input_Chat(BaseModel):
@@ -16,12 +16,17 @@ class Input_Chat(BaseModel):
     section: str
 
 class Input_Source(BaseModel):
-    #URL for source
+    name: str
     url: str
-    #section for source
     source_section: str
-    #refresh interval for data crawler in minutes
-    refresh_interval: int
+    refresh_interval: int # in minutes
+
+class SourceFull(BaseModel):
+    id: str
+    name: str
+    url: str
+    source_section: str
+    refresh_interval: int # in minutes
 
 app = FastAPI()
 
@@ -55,14 +60,26 @@ async def chat_stream(input_chat: Input_Chat, request: Request):
     generator = query_rag_streaming_generator(input_chat.prompt, [input_chat.section])
     return StreamingResponse(sse_streaming_wrapper(request, generator), media_type="application/json")
 
-@app.post("/api/source/")
-async def source(input_source : Input_Source):
-    print("URL:", input_source.url)
-    print("Source Section:", input_source.source_section)
-    print("Refresh Interval:", input_source.refresh_interval)
-    await add_source(input_source.url, [input_source.source_section], input_source.refresh_interval)
-    return {"source" : "function"}
+@app.post("/api/source")
+async def source(input_source: Input_Source):
+    await add_source(input_source.name, input_source.url, input_source.source_section, input_source.refresh_interval)
+    return {"response" : "added"}
 
+@app.get("/api/source")
+async def get_source():
+    sources_list = await get_sources()
+    sources = []
+    for source in sources_list:
+        sources.append(
+            SourceFull(
+                id=str(source["sourceId"]),
+                name=source["name"],
+                url=source["url"],
+                source_section=source["section"],
+                refresh_interval=source["refresh_interval"]
+            )
+        )
+    return sources
 
 @app.post("/api/refresh/")
 async def refresh():

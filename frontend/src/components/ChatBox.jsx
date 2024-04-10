@@ -55,7 +55,7 @@ function ChatBox({ sourceTag }) {
                 }
             }
         } catch(error) {
-            console.log(error);
+            addMessage({ sender: "ai", contents: "Sorry, I'm unable to provide an answer to this question." });
         } finally {
             setLoading(false);
         }
@@ -86,11 +86,11 @@ function ChatBox({ sourceTag }) {
                     <div className={styles.suggestionContainer}>
                         <div className={styles.suggestion_col}>
                             <SuggestedPrompt contents="What is an Amazon Alexa for business?" onClick={chooseSuggestion}> </SuggestedPrompt>
-                            <SuggestedPrompt contents="Where am I?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            {/* <SuggestedPrompt contents="What is an EU directive?" onClick={chooseSuggestion}> </SuggestedPrompt> */}
                         </div>
                         <div className={styles.suggestion_col}>
-                            <SuggestedPrompt contents="What time is it?" onClick={chooseSuggestion}> </SuggestedPrompt>
-                            <SuggestedPrompt contents="Who are you?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            <SuggestedPrompt contents="What is an EU directive?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            {/* <SuggestedPrompt contents="Who are you?" onClick={chooseSuggestion}> </SuggestedPrompt> */}
                         </div>
                     </div>
 
