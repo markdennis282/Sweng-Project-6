@@ -68,7 +68,3 @@ async def source(input_source : Input_Source):
 async def refresh():
     await refresh_all_sources()
     return {"refresh" : "function"}
-
-@app.get("/input_sources", response_model=List[Input_Source])
-async def read_all_input_sources() -> List[Input_Source]:
-    return list(input_sources.values())
