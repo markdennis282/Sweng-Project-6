@@ -40,6 +40,8 @@ function ModalAddSource({ onCancel, onSubmit }) {
         <Modal>
             <h1 className={styles.header}>Add a new source</h1>
             <form id="addSourceForm" onSubmit={handleSubmit}>
+                <label htmlFor="name">Name</label> <br />
+                <input className={styles.formInput} type="text" name="name" id="name" required /> <br />
                 <label htmlFor="url">Source URL</label> <br />
                 <input className={styles.formInput} type="text" name="url" id="url" required placeholder="e.g. www.amazon/gdpr" /> <br />
                 <label htmlFor="accessControl">Access Control</label> <br />
