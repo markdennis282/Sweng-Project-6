@@ -8,35 +8,43 @@ import Table from "../components/Table";
 import styles from "./ManageSourcesPage.module.css";
 import ModalAddSource from "../components/ModalAddSource";
 import { apiUrl } from "../utils/apiAccess";
+import ModalEditSource from "../components/ModalEditSource";
 
 function ManageSourcesPage() {
 
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [openDeleteModalSourceId, setOpenDeleteModalSourceId] = useState(null);
+    const [openEditModalSourceId, setOpenEditModalSourceId] = useState(null);
     const [tableData, setTableData] = useState([]);
 
-    const handleEdit = sourceId => {
-        console.log(`Edit source ${sourceId}.`);
-    };
-
-    const handleManualRefresh = sourceId => {
-        console.log(`Manual refresh for source ${sourceId}.`);
+    const handleManualRefresh = async sourceId => {
+        await axios.post(apiUrl(`/refresh/${sourceId}`));
     };
 
     const loadData = async () => {
         const res = await axios.get(apiUrl("/source"));
         const data = res.data;
         for(const item of data) {
-            item.manualRefresh = <Button text="Refresh" onClick={() => handleManualRefresh(item.sourceId)} />;
-            item.edit = <Button text="Edit" onClick={() => handleEdit(item.sourceId)} />;
-            item.delete = <Button text="Delete" onClick={() => setOpenDeleteModalSourceId(item.sourceId)} />;
+            item.manualRefresh = <Button text="Refresh" onClick={() => handleManualRefresh(item.source_id)} />;
+            item.edit = <Button text="Edit" onClick={() => setOpenEditModalSourceId(item.source_id)} />;
+            item.delete = <Button text="Delete" onClick={() => setOpenDeleteModalSourceId(item.source_id)} />;
         }
         setTableData(data);
     };
 
-    useEffect(() => loadData(), []);
+    useEffect(() => {
+        loadData();
+    }, []);
 
-    const handleDeletion = () => {
+    const getSourceById = sourceId => tableData.find(item => item.source_id === sourceId);
+    const currentlyEditedSource = openEditModalSourceId !== null ? getSourceById(openEditModalSourceId) : null;
+
+    const handleRefreshAll = async () => {
+        await axios.post(apiUrl("/refresh"));
+    };
+
+    const handleDeletion = async () => {
+        await axios.delete(apiUrl(`/source/${openDeleteModalSourceId}`));
         setOpenDeleteModalSourceId(null);
         loadData();
     };
@@ -46,10 +54,15 @@ function ManageSourcesPage() {
         loadData();
     };
 
+    const handleEdit = () => {
+        setOpenEditModalSourceId(null);
+        loadData();
+    };
+
     const tableHeaders = [
         { title: "Name", key: "name", align: "left" },
         { title: "Source URL", key: "url", align: "left" },
-        { title: "Section", key: "source_section", align: "left" },
+        { title: "Section", key: "section", align: "left" },
         { title: "Refresh interval", key: "refresh_interval", align: "left" },
         { title: "Manual refresh", key: "manualRefresh" },
         { title: "Edit", key: "edit" },
@@ -62,7 +75,7 @@ function ManageSourcesPage() {
                 <h1 className={styles.heading}>Manage sources</h1>
                 <div className={styles.menu}>
                     <Button text="Add new source" onClick={() => setIsAddModalOpen(true)} />
-                    <Button text="Refresh all sources" />
+                    <Button text="Refresh all sources" onClick={handleRefreshAll} />
                 </div>
                 <Table headers={tableHeaders} data={tableData} />
             </div>
@@ -72,11 +85,23 @@ function ManageSourcesPage() {
                     onSubmit={handleAdding}
                 />
             }
-            { openDeleteModalSourceId &&
+            { openDeleteModalSourceId !== null &&
                 <ModalDeleteSource
                     sourceId={openDeleteModalSourceId}
                     onCancel={() => setOpenDeleteModalSourceId(null)}
                     onDelete={handleDeletion}
+                />
+            }
+            { openEditModalSourceId !== null &&
+                <ModalEditSource
+                    initialSourceId={openEditModalSourceId}
+                    initialName={currentlyEditedSource.name}
+                    initialUrl={currentlyEditedSource.url}
+                    initialSection={currentlyEditedSource.section}
+                    initialRefreshInterval={currentlyEditedSource.refresh_interval}
+                    sourceId={openEditModalSourceId}
+                    onCancel={() => setOpenEditModalSourceId(null)}
+                    onSubmit={handleEdit}
                 />
             }
         </>
