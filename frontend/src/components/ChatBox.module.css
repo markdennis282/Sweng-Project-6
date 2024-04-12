@@ -1,34 +1,61 @@
 .chatBox {
     display: flex; 
     flex-direction: column;
-    margin-top: 60px;
+    margin-top: 20px;
     justify-content: flex-end;
     position: relative;
-    height: 70vh;
+    box-sizing: border-box;
+    height: calc(100% - 30px - 5em); /* 100% - margin - navbar height */
     background-image: url("../assets/millennium_bg.png");
     background-size: cover;
     background-color: rgb(20, 31, 62);
     border: solid white; 
-    
     border-radius: 20px;
-    padding: 0 3em 3em;
+    padding: 0 2em 1em;
+}
+
+.inputContainer {
+    position: relative;
+    line-height: 1;
+    margin: 1em 1em 0;
+}
+
+.sendButton {
+    position: absolute;
+    top: calc(50% - 1.6px); /* 1.6px is a fix for some inputContainer height weirdness */
+    right: 12px;
+    transform: translate(0, -50%);
+    box-sizing: border-box;
+    padding: 0;
+    height: 48px;
+    width: 48px; 
+    line-height: 1;
+
+    display: flex;
+    text-align: center;
+    align-items: center;
+
+    background-color: #004176;
+    color: white;
+    border: solid white;
+    border-radius: 20px;
+    font-size: 20px;
 }
 
 .chatInputField {
-    align-self: center;
+    box-sizing: border-box;
     width: 100%;
-    border-radius: 20px;
-    transition: 0.5s;
+    height: calc(4em + 4.8px);  /* 3em padding + 1em text + 4.8px border */ 
+    line-height: 1;
     background-color: #004176;
     font-size: 16px;
-    border: solid white; 
-    text-decoration: none;
-    padding: 1em;
-    color: white; /*not working?*/
+    border: solid white;
+    padding: 1.5em;
+    padding-right: 72px;
+    color: white;
     resize: none;
-    height: 4em;
-    min-height: 4em;
-    /* overflow: auto; */
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 .chatInputField::placeholder {
@@ -79,6 +106,18 @@
 
 .spinner {
     position: absolute;
+    display: flex;
     margin-bottom: calc(4em + 36.8px + 1rem); /* input height + input padding and border + icon bottom margin  */
     margin-left: 0.5em;
 }
+
+
+.suggestionContainer {
+    display: flex;
+    margin-top: 20px;
+    justify-content: top;
+}
+.suggestion_col {
+    flex: 1;
+}
+

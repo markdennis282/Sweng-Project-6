@@ -5,8 +5,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
+from models.source import NewSourceDto, Source
 from services.llm import query_rag, query_rag_streaming_generator
-from services.source_management import add_source, refresh_all_sources
+from services.source_management import add_source, delete_source, refresh_all_sources, refresh_source, get_sources, update_source
 from utils import is_production_mode
 
 class Input_Chat(BaseModel):
@@ -14,14 +15,6 @@ class Input_Chat(BaseModel):
     prompt: str
     #section of company
     section: str
-
-class Input_Source(BaseModel):
-    #URL for source
-    url: str
-    #section for source
-    source_section: str
-    #refresh interval for data crawler in minutes
-    refresh_interval: int
 
 app = FastAPI()
 
@@ -55,17 +48,32 @@ async def chat_stream(input_chat: Input_Chat, request: Request):
     generator = query_rag_streaming_generator(input_chat.prompt, [input_chat.section])
     return StreamingResponse(sse_streaming_wrapper(request, generator), media_type="application/json")
 
-@app.post("/api/source/")
-async def source(input_source : Input_Source):
-    print("URL:", input_source.url)
-    print("Source Section:", input_source.source_section)
-    print("Refresh Interval:", input_source.refresh_interval)
-    await add_source(input_source.url, [input_source.source_section], input_source.refresh_interval)
-    return {"source" : "function"}
+@app.post("/api/source")
+async def source(input_source: NewSourceDto):
+    await add_source(input_source)
+    return {"response" : "added"}
 
+@app.get("/api/source")
+async def get_source() -> list[Source]:
+    sources = await get_sources()
+    return sources
 
-@app.post("/api/refresh/")
+@app.delete("/api/source/{source_id}")
+async def del_source(source_id: int):
+    await delete_source(source_id)
+    return {"response": "deleted"}
+
+@app.put("/api/source")
+async def put_source(new_source: Source):
+    await update_source(new_source)
+    return {"response": "updated"}
+
+@app.post("/api/refresh")
 async def refresh():
     await refresh_all_sources()
-    return {"refresh" : "function"}
+    return {"function" : "refresh"}
 
+@app.post("/api/refresh/{source_id}")
+async def refresh(source_id: int):
+    await refresh_source(source_id)
+    return {"function" : "refresh"}

@@ -1,0 +1,24 @@
+.menuContainer {
+    margin-top: 40px;
+}
+
+.menuButton {
+    height: 50px;
+    width: 80%;
+    margin: 0 auto 20px;
+}
+
+
+.returnHome {
+    color: white;
+    font-size: 4rem;
+    font-weight: 100;
+    cursor: pointer;
+    transition: font-size .5s;
+    font-family: 'Prata', serif ;
+    margin-top: 50vh;
+  }
+  
+  .returnHome:hover{
+    font-size: 4.5rem;
+  }

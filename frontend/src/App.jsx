@@ -1,31 +1,50 @@
 import { useState } from "react";
 
-import AddSourceForm from "./components/AddSourceForm.jsx";
-import ChatBox from "./components/ChatBox.jsx";
+// import AddSourceForm from "./components/AddSourceForm.jsx";
 import Layout from "./components/Layout.jsx";
-import NavBar from "./components/NavBar.jsx";
+import SingleSelectionButtonGroup from "./components/SingleSelectionButtonGroup.jsx";
+import ChatPage from "./pages/ChatPage.jsx";
+import LandingPage from "./components/LandingPage.jsx";
 // import LogoScreen from "./components/LogoScreen.jsx";
 
 import "./App.css";
+import styles from "./App.module.css";
+import ManageSourcesPage from "./pages/ManageSourcesPage.jsx";
 
 function App() {
 
-    const sourceTags = ["ALL", "COMPLIANCE", "HR", "TECH"];
-    const [selectedSourceTag, setSelectedSourceTag] = useState("ALL");
+    const pages = ["Chat", "Manage sources"];
+    const [selectedPage, setSelectedPage] = useState("Chat");
+    const [onMenuScreen, setOnMenuScreen] = useState(true);
 
-    const handleSourceChange = item => {
-        setSelectedSourceTag(item);
+    const handlePageChange = item => {
+        setSelectedPage(item);
+    };
+    const handleMenuToggle = () => {
+        setOnMenuScreen(!onMenuScreen);
     };
 
-    return (
-        <>
-            <Layout menuComponent={<AddSourceForm />}>
-                <NavBar items={sourceTags} onChange={handleSourceChange} />
-                <ChatBox sourceTag={selectedSourceTag} />
-            </Layout>
-        </>
-        // <LogoScreen /> /* errors happening with images not appearing when making ternary to change screen*/
-    );
+    const menuComponent = <div className={styles.menuContainer}>
+        <SingleSelectionButtonGroup items={pages} onChange={handlePageChange} buttonClassName={styles.menuButton} />
+        <div className={styles.returnHome} onClick={handleMenuToggle}>m</div>
+        {/* <AddSourceForm /> */}
+    </div>;
+
+    if(onMenuScreen) {
+        return (
+            <LandingPage onButtonClick={handleMenuToggle} />
+        );
+    } else {
+        return (
+            <>
+                <Layout menuComponent={menuComponent}>
+                    { selectedPage === "Chat" && <ChatPage /> }
+                    { selectedPage === "Manage sources" && <ManageSourcesPage /> }
+                </Layout>
+            </>
+            // <LogoScreen /> /* errors happening with images not appearing when making ternary to change screen*/
+        );
+    }
 }
 
 export default App;

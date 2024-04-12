@@ -1,0 +1,34 @@
+.header {
+    margin: 0 0 20px;
+    font-size: 2rem;
+}
+
+.formInput {
+    height: 32px;
+    width: 150px;
+    transition: 0.2s;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #065FA8;
+    border: none;
+}
+
+.formInput:hover{
+    border: solid white;
+    border-color: #646cff;
+    box-shadow: 0 0 4px 4px rgba(44, 176, 247, 0.7); 
+    border-color: rgb(255, 255, 255);
+}
+
+.formInput::placeholder{
+    color: rgb(192, 192, 192)
+}
+
+.buttonContainer {
+    margin-top: 10px;
+}
+
+.submitButton {
+    margin-left: 20px;
+}
