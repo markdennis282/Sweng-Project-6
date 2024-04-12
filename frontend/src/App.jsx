@@ -20,15 +20,15 @@ function App() {
     const handlePageChange = item => {
         setSelectedPage(item);
     };
-
-    const menuComponent = <div className={styles.menuContainer}>
-        <SingleSelectionButtonGroup items={pages} onChange={handlePageChange} buttonClassName={styles.menuButton} />
-        {/* <AddSourceForm /> */}
-    </div>;
-
     const handleMenuToggle = () => {
         setOnMenuScreen(!onMenuScreen);
     };
+
+    const menuComponent = <div className={styles.menuContainer}>
+        <SingleSelectionButtonGroup items={pages} onChange={handlePageChange} buttonClassName={styles.menuButton} />
+        <div className={styles.returnHome} onClick={handleMenuToggle}>m</div>
+        {/* <AddSourceForm /> */}
+    </div>;
 
     if(onMenuScreen) {
         return (

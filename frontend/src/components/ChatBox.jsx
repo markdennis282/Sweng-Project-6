@@ -16,6 +16,8 @@ function ChatBox({ sourceTag }) {
     const userInputRef = useRef(null);
     const chatBottomRef = useRef(null);
     const [loading, setLoading] = useState(false);
+    const [currentUpdate, setCurrentUpdate] = useState("");
+
 
     const addMessage = newMessage => {
         setMessages(m => [...m, newMessage]);
@@ -43,7 +45,7 @@ function ChatBox({ sourceTag }) {
             const messageIterator = getChatStreamResponse(messageContents, sourceTag.toLowerCase());
             for await (const message of messageIterator) {
                 if(message.message_type === "update") {
-                    addMessage({ sender: "system", contents: message.message_content });
+                    setCurrentUpdate(message.message_content);
                 } else if(message.message_type === "final_response") {
                     addMessage({ sender: "ai", contents: message.message_content });
                 } else if(message.message_type === "error") {
@@ -53,7 +55,7 @@ function ChatBox({ sourceTag }) {
                 }
             }
         } catch(error) {
-            console.log(error);
+            addMessage({ sender: "ai", contents: "Sorry, I'm unable to provide an answer to this question." });
         } finally {
             setLoading(false);
         }
@@ -84,11 +86,11 @@ function ChatBox({ sourceTag }) {
                     <div className={styles.suggestionContainer}>
                         <div className={styles.suggestion_col}>
                             <SuggestedPrompt contents="What is an Amazon Alexa for business?" onClick={chooseSuggestion}> </SuggestedPrompt>
-                            <SuggestedPrompt contents="Where am I?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            {/* <SuggestedPrompt contents="What is an EU directive?" onClick={chooseSuggestion}> </SuggestedPrompt> */}
                         </div>
                         <div className={styles.suggestion_col}>
-                            <SuggestedPrompt contents="What time is it?" onClick={chooseSuggestion}> </SuggestedPrompt>
-                            <SuggestedPrompt contents="Who are you?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            <SuggestedPrompt contents="What is an EU directive?" onClick={chooseSuggestion}> </SuggestedPrompt>
+                            {/* <SuggestedPrompt contents="Who are you?" onClick={chooseSuggestion}> </SuggestedPrompt> */}
                         </div>
                     </div>
 
@@ -106,6 +108,7 @@ function ChatBox({ sourceTag }) {
                             loading={loading}
                             speedMultiplier="1"
                         />
+                        <div>{ currentUpdate }</div>
                     </div>
                 }
 

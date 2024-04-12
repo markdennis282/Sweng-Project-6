@@ -14,6 +14,8 @@ import mark_h from "../assets/headshots/mark_h.jpeg";
 import creagh from "../assets/headshots/creagh.jpeg";
 import ruslan from "../assets/headshots/ruslan.jpeg";
 import pierce from "../assets/headshots/pierce.jpeg";
+import dario from "../assets/headshots/dario.jpeg";
+import michal from "../assets/headshots/michal.jpeg";
 
 function LandingPage({ onButtonClick }) {
     const handleClick = () => {
@@ -27,24 +29,29 @@ function LandingPage({ onButtonClick }) {
                     <text x="140px" y="80%" fill="white" onClick={handleClick}>marvin.</text>
                 </svg>
             </div>
-            <div className={styles.aboutText}> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere illo minus culpa mollitia unde commodi inventore voluptatem obcaecati molestias, rerum molestiae neque sapiente nesciunt odio beatae iure non, sequi deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita quis error deleniti itaque voluptatum possimus qui aperiam perferendis alias nesciunt ea doloremque accusantium doloribus animi illum quasi quaerat, libero ut?Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, qui! Temporibus aspernatur quos mollitia molestias quidem obcaecati. Eaque accusantium fugit voluptate culpa, doloribus est molestias aut ea dolore maxime pariatur!</div>
+            <div className={styles.aboutText}>
+                <p>Meet Marvin!</p>
+                <p>Don't have time to read up on the lastest updates of your required documents?</p> 
+                <p>Ask Marvin!</p>
+                <p>Marvin allows you to stay up-to-date on the latest information for your specific department and also add your own sources to query.</p> 
+            </div>
             <div className={styles.aboutTeam}>
                 <div className={styles.teamHeader}> our team</div>
                 <div className={styles.gallery}>
                     <div>
-                        <Headshot info={["Mark Dennis", "3rd Year", "Crawler"]} image={mark_d} />
-                        <Headshot info={["Creagh Duggan", "3rd Year", "Crawler"]} image={creagh} />
-                        <Headshot info={["Michal Bronicki", "3rd Year", "Backend"]} image={adel} />
-                        <Headshot info={["Dario Cipani", "3rd Year", "Frontend"]} image={adel} />
-                        <Headshot info={["Mark Healy", "3rd Year", "LLM"]} image={mark_h} />
+                        <Headshot info={["Michal Bronicki", "3rd Year", "Backend Team"]} image={michal} />
+                        <Headshot info={["Dario Cipani", "3rd Year", "Frontend Team"]} image={dario} />
+                        <Headshot info={["Mark Dennis", "3rd Year", "Data Crawling Team"]} image={mark_d} />
+                        <Headshot info={["Creagh Duggan", "3rd Year", "Data Crawling Team"]} image={creagh} />
+                        <Headshot info={["Mark Healy", "3rd Year", "LLM Team"]} image={mark_h} />
                     </div>
                     <div>
-                        <Headshot info={["Adel Shaaban", "2nd Year", "LLM"]} image={adel} />
-                        <Headshot info={["Nancy Heppe", "2nd Year", "Backend"]} image={nancy} />
-                        <Headshot info={["Audrey Del Rosario", "2nd Year", "Frontend"]} image={audrey} />
-                        <Headshot info={["Inam Syed", "2nd Year", "Frontend"]} image={inam} />
-                        <Headshot info={["Ruslan Kirniev", "2nd Year", "LLM"]} image={ruslan} />
-                        <Headshot info={["Pierce Buckley", "2nd Year", "Frontend"]} image={pierce} />
+                        <Headshot info={["Adel Shaaban", "2nd Year", "LLM Team"]} image={adel} />
+                        <Headshot info={["Nancy Heppe", "2nd Year", "Backend Team"]} image={nancy} />
+                        <Headshot info={["Audrey Del Rosario", "2nd Year", "Frontend Team"]} image={audrey} />
+                        <Headshot info={["Pierce Buckley", "2nd Year", "Frontend Team"]} image={pierce} />
+                        <Headshot info={["Ruslan Kirniev", "2nd Year", "LLM Team"]} image={ruslan} />
+                        <Headshot info={["Inam Syed", "2nd Year", "Frontend Team"]} image={inam} />
                     </div>
                 </div>
 

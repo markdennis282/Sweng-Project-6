@@ -3,15 +3,15 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import axios from "axios";
 
-import ModalAddsource from "./ModalAddsource";
+import ModalAddSource from "./ModalAddSource";
 
 jest.mock("axios");
 jest.mock("../utils/apiAccess");
 
-describe("ModalAddsource Component", () => {
+describe("ModalAddSource Component", () => {
 
     it("should display a form with inputs, select buttons and a submit button", () => {
-        render(<ModalAddsource />);
+        render(<ModalAddSource />);
         expect(screen.getByLabelText(/source url/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/access control/i)).toBeInTheDocument();
         expect(screen.getByLabelText(/refresh interval/i)).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("ModalAddsource Component", () => {
     });
 
     it("should not make request when form is not filled", async () => {
-        render(<ModalAddsource />);
+        render(<ModalAddSource />);
 
         const mockAxiosPost = jest.spyOn(axios, "post").mockImplementation();
 
